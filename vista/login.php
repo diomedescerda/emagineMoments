@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="login-container">
-        <img src="./vista/img/logo.png" class="logo" alt="Logo">
+        <a href="index.php"><img src="./vista/img/logo.png" class="logo" alt="Logo"></a>
         <h2>Iniciar Sesión</h2>
         <form id="miForm" method="POST" action="index.php?action=iniciarSesion">
             <label for="email">Correo</label>

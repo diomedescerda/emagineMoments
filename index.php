@@ -76,7 +76,7 @@ if (isset($_GET['action'])) {
             break;
         
         default:
-            $controlador->mostrarBienvenida();
+            $controlador->mostrarLaberinto();
             break;
     }
 } else {
