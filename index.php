@@ -19,7 +19,7 @@ if (isset($_GET['action'])) {
 
         case 'registrar':
             $controlador->registrarUsuario(
-                $_POST['idRol'],
+                $_POST['IdRol'],
                 $_POST['primerNombre'],
                 $_POST['otrosNombres'],
                 $_POST['primerApellido'],

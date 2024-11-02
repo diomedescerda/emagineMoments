@@ -46,13 +46,13 @@
 
         <div id="additionalSelects" style="display: <?= $usuario['IdRol'] == 3 ? 'block' : 'none' ?>;">
             <select name="IdTipoPrestador">
-                <option value=1>Cantante Solista</option>
-                <option value=2>Banda Musical</option>
+                <option value=1>Solista</option>
+                <option value=2>Banda</option>
                 <option value=3>DJ</option>
                 <option value=4>Chef</option>
                 <option value=5>Comediante</option>
                 <option value=6>Decorador</option>
-                <option value=7>Alquiler de Mobiliario</option>
+                <option value=7>Alquiler Mobilario</option>
                 <option value=8>Animador</option>
             </select>
         </div>

@@ -9,28 +9,7 @@ class Usuario
     {
         $this->conexion = (new Conexion())->getConexion();
     }
-    // 
-    public function registrar($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono)
-    {
-        $contrasena_hashed = password_hash($contrasena, PASSWORD_DEFAULT);
-        $stmt = $this->conexion->prepare("INSERT INTO Usuarios (IdRol, PrimerNombre, OtrosNombres, PrimerApellido, OtrosApellidos, Email, Contrasena, Direccion, Telefono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        if ($stmt === false) {
-            die("Error en la preparación de la consulta: " . $this->conexion->error);
-        }
-
-        $stmt->bind_param("issssssss", $idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena_hashed, $direccion, $telefono);
-
-        $result = $stmt->execute();
-
-        if ($result === false) {
-            die("Error en la ejecución de la consulta: " . $stmt->error);
-        }
-
-        return $result;
-    }
-
-    //
     public function verificarCredenciales($email, $contrasena)
     {
         $stmt = $this->conexion->prepare("SELECT * FROM Usuarios WHERE Email = ?");
@@ -42,7 +21,20 @@ class Usuario
         }
     }
 
-    //
+    public function crearUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono, $idTipoPrestador = null)
+    {
+        $hash_contrasena = password_hash($contrasena, PASSWORD_DEFAULT);
+        $stmt = $this->conexion->prepare("INSERT INTO Usuarios (IdRol, PrimerNombre, OtrosNombres, PrimerApellido, OtrosApellidos, Email, Contrasena, Direccion, Telefono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("issssssss", $idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $hash_contrasena, $direccion, $telefono);
+
+        if ($stmt->execute()) {
+            $userId = $this->conexion->insert_id;
+            $this->actualizarRolEnTabla($userId, $idRol, null, $idTipoPrestador);
+        } else {
+            throw new Exception("Error al crear usuario: " . $stmt->error);
+        }
+    }
+
     public function obtenerUsuarios()
     {
         $resultado = $this->conexion->query("SELECT u.IdUsuario, u.IdRol, r.Nombre ,u.PrimerNombre, u.OtrosNombres, u.PrimerApellido, u.OtrosApellidos, 
@@ -50,7 +42,6 @@ class Usuario
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
 
-    //
     public function obtenerUsuarioPorId($id)
     {
         $stmt = $this->conexion->prepare("SELECT * FROM Usuarios WHERE IdUsuario = ?");
@@ -59,7 +50,6 @@ class Usuario
         return $stmt->get_result()->fetch_assoc();
     }
 
-    //
     public function actualizarUsuario($id, $PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $IdRol, $IdTipoPrestador = null)
     {
         $currentRoleStmt = $this->conexion->prepare("SELECT IdRol FROM Usuarios WHERE IdUsuario = ?");
@@ -78,7 +68,6 @@ class Usuario
         }
     }
 
-    //
     public function eliminarUsuario($id, $IdRol)
     {
         switch ($IdRol) {
@@ -100,21 +89,6 @@ class Usuario
         $stmt = $this->conexion->prepare("DELETE FROM Usuarios WHERE IdUsuario = ?");
         $stmt->bind_param("i", $id);
         return $stmt->execute();
-    }
-
-    //
-    public function crearUsuario($PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $Contrasena, $IdRol, $IdTipoPrestador = null)
-    {
-        $hash_contrasena = password_hash($Contrasena, PASSWORD_DEFAULT);
-        $stmt = $this->conexion->prepare("INSERT INTO usuarios (PrimerNombre, OtrosNombres, PrimerApellido, OtrosApellidos, Email, Direccion, Telefono, Contrasena, IdRol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssssi", $PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $hash_contrasena, $IdRol);
-
-        if ($stmt->execute()) {
-            $userId = $this->conexion->insert_id;
-            $this->actualizarRolEnTabla($userId, $IdRol, null, $IdTipoPrestador);
-        } else {
-            throw new Exception("Error al crear usuario: " . $stmt->error);
-        }
     }
 
     private function actualizarRolEnTabla($idUsuario, $rolNuevo, $rolAnterior = null, $IdTipoPrestador = null)

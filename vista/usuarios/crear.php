@@ -33,14 +33,14 @@
 
     <div id="additionalSelects" style="display: none;">
         <select name="IdTipoPrestador">
-            <option value=1>Cantante Solista</option>
-            <option value=2>Banda Musical</option>
-            <option value=3>DJ</option>
-            <option value=4>Chef</option>
-            <option value=5>Comediante</option>
-            <option value=6>Decorador</option>
-            <option value=7>Alquiler de Mobiliario</option>
-            <option value=8>Animador</option>
+            <option value=1>Entretenimiento Musical</option>
+            <option value=2>Entretenimiento Musical</option>
+            <option value=3>Entretenimiento Musical</option>
+            <option value=4>Gastronomía y Bebidas</option>
+            <option value=5>Espectáculo y Animación</option>
+            <option value=6>Decoración y Ambientación</option>
+            <option value=7>Logística y Mobiliario</option>
+            <option value=8>Espectáculo y Animación</option>
         </select>
     </div>
 
