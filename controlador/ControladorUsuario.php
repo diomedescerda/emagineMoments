@@ -85,18 +85,19 @@ class ControladorUsuario {
         $Direccion = $_POST['Direccion'];
         $Telefono = $_POST['Telefono'];
         $IdRol = $_POST['IdRol'];
+        $IdTipoPrestador = $_POST['IdTipoPrestador'];
     
-        $this->modelo->actualizarUsuario($id, $PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $IdRol);
+        $this->modelo->actualizarUsuario($id, $PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $IdRol, $IdTipoPrestador);
         header('Location: index.php?action=listar');
     }
 
-    public function eliminar($id) {
+    public function eliminar($id, $IdRol) {
         if($id === NULL){
             $id = $this->setIdUsuario();
         } else {
             $this->verificarAccesoAdministrador();
         }
-        $this->modelo->eliminarUsuario($id);
+        $this->modelo->eliminarUsuario($id, $IdRol);
         header('Location: index.php?action=listar');
         if($id === $_SESSION['usuario']['IdUsuario']) session_destroy();
     }
@@ -117,8 +118,9 @@ class ControladorUsuario {
         $Telefono = $_POST['Telefono'];
         $Contrasena = $_POST['Contrasena'];
         $IdRol = $_POST['IdRol'];
+        $IdTipoPrestador = $_POST['IdTipoPrestador'];
     
-        $this->modelo->crearUsuario($PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $Contrasena, $IdRol);
+        $this->modelo->crearUsuario($PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $Contrasena, $IdRol, $IdTipoPrestador);
         header('Location: index.php?action=listar');
     }
 

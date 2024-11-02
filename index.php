@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'eliminar':
-            $controlador->eliminar($_GET['id']);
+            $controlador->eliminar($_GET['id'], $_GET['IdRol']);
             break;
         
         case 'crear':

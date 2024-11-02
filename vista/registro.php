@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="./vista/styles/register.css">
     <link rel="icon" href="./vista/img/favicon.png" type="image/png" sizes="64x64">
 </head>
+
 <body>
     <div class="register-container">
         <img src="./vista/img/logo.png" class="logo" alt="Logo">
@@ -57,10 +59,31 @@
 
             <div class="form-group">
                 <label for="rol">Rol</label>
-                <select id="rol" name="idRol" required>
-                    <option value=2>Cliente</option>
-                    <option value=3>Prestador</option>
-                </select>
+                <select name="IdRol" id="roleSelect" required>
+                    <option value="1">Administrador</option>
+                    <option value="2">Cliente</option>
+                    <option value="3">Prestador</option>
+                </select><br>
+
+                <div id="additionalSelects" style="display: none;">
+                    <select name="IdTipoPrestador">
+                        <option value=1>Cantante Solista</option>
+                        <option value=2>Banda Musical</option>
+                        <option value=3>DJ</option>
+                        <option value=4>Chef</option>
+                        <option value=5>Comediante</option>
+                        <option value=6>Decorador</option>
+                        <option value=7>Alquiler de Mobiliario</option>
+                        <option value=8>Animador</option>
+                    </select>
+                </div>
+
+                <script>
+                    document.getElementById('roleSelect').addEventListener('change', function () {
+                        const additionalSelects = document.getElementById('additionalSelects');
+                        additionalSelects.style.display = this.value === '3' ? 'block' : 'none';
+                    });
+                </script>
             </div>
 
             <button class="submit-button" type="submit">Registrarse</button>
@@ -70,4 +93,5 @@
 
     <script src="./js/script.js"></script>
 </body>
+
 </html>
