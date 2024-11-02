@@ -58,8 +58,8 @@
             <div class="form-group">
                 <label for="rol">Rol</label>
                 <select id="rol" name="idRol" required>
-                    <option value=2>Usuario</option>
-                    <option value=3>Proveedor</option>
+                    <option value=2>Cliente</option>
+                    <option value=3>Prestador</option>
                 </select>
             </div>
 

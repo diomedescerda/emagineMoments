@@ -5,10 +5,7 @@
     <body>
         <h1>Editar Usuario</h1>
         
-        <form method="POST" action="index.php?action=actualizar
-            <?php
-            $selected = $usuario['IdUsuario'];
-            if($_SESSION['usuario']['IdRol'] === 1) echo "&id= $selected";?>">
+        <form method="POST" action="index.php?action=actualizar<?php $selected = $usuario['IdUsuario']; if($_SESSION['usuario']['IdRol'] === 1) echo "&id= $selected";?>">
 
             <label for="PrimerNombre">Primer Nombre:</label>
             <input type="text" name="PrimerNombre" value="<?= $usuario['PrimerNombre'] ?>" required>
@@ -33,14 +30,14 @@
 
             <label for="IdRol">Rol:</label>
             <select name="IdRol" required>
-            <?php //Opcion disponible solo para administrador
+            <?php
                 if ($_SESSION['usuario']['IdRol'] === 1) {
                 $selected = $usuario['IdRol'] == 1 ? 'selected' : '';
                 echo "<option value='1' $selected>Administrador</option>";
                 }
             ?>
-                <option value="2" <?= $usuario['IdRol'] == 2 ? 'selected' : '' ?>>Usuario</option>
-                <option value="3" <?= $usuario['IdRol'] == 3 ? 'selected' : '' ?>>Proveedor</option>
+                <option value="2" <?= $usuario['IdRol'] == 2 ? 'selected' : '' ?>>Cliente</option>
+                <option value="3" <?= $usuario['IdRol'] == 3 ? 'selected' : '' ?>>Prestador</option>
             </select>
 
             <button type="submit">Actualizar</button>
