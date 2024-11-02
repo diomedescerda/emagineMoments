@@ -47,11 +47,8 @@ class ControladorUsuario {
     }
 
     public function registrarUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono) {
-        if ($this->modelo->registrar($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono)) {
-	        header('Location: ./');
-        } else {
-            echo "Error al registrar.";
-        }
+        $this->modelo->crearUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono);
+        header('Location: ./');
     }
 
     public function listar() {
@@ -109,18 +106,18 @@ class ControladorUsuario {
 
     public function crear() {
         $this->verificarAccesoAdministrador();
-        $PrimerNombre = $_POST['PrimerNombre'];
-        $OtrosNombres = $_POST['OtrosNombres'];
-        $PrimerApellido = $_POST['PrimerApellido'];
-        $OtrosApellidos = $_POST['OtrosApellidos'];
-        $Email = $_POST['Email'];
-        $Direccion = $_POST['Direccion'];
-        $Telefono = $_POST['Telefono'];
-        $Contrasena = $_POST['Contrasena'];
-        $IdRol = $_POST['IdRol'];
-        $IdTipoPrestador = $_POST['IdTipoPrestador'];
+        $idRol = $_POST['IdRol'];
+        $primerNombre = $_POST['PrimerNombre'];
+        $otrosNombres = $_POST['OtrosNombres'];
+        $primerApellido = $_POST['PrimerApellido'];
+        $otrosApellidos = $_POST['OtrosApellidos'];
+        $email = $_POST['Email'];
+        $contrasena = $_POST['Contrasena'];
+        $direccion = $_POST['Direccion'];
+        $telefono = $_POST['Telefono'];
+        $idTipoPrestador = $_POST['IdTipoPrestador'];
     
-        $this->modelo->crearUsuario($PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $Contrasena, $IdRol, $IdTipoPrestador);
+        $this->modelo->crearUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono, $idTipoPrestador);
         header('Location: index.php?action=listar');
     }
 
