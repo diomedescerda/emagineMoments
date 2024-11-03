@@ -50,4 +50,11 @@ class ControladorServicio {
         $this->modelo->actualizarServicio($id, $idTipoServicio, $idPrestador, $costo, $descripcion);
         header('Location: index.php?action=listarServicios');
     }
+
+    public function eliminar($id) {
+        session_start();
+        //$this->verificarAccesoAdministrador();
+        $this->modelo->eliminarServicio($id);
+        header('Location: index.php?action=listarServicios');
+    }
 }

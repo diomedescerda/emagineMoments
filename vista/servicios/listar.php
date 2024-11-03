@@ -33,8 +33,8 @@ if (isset($_SESSION['usuario'])): ?>
                     <td><?= $servicio['Descripcion'] ?></td>
                     <td>
                         <a href="index.php?action=editarServicio&id=<?= $servicio['IdServicio'] ?>">Editar</a>
-                        <a href="index.php?action=eliminar&id=<?= $servicio['IdServicio'] ?>"
-                            onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a>
+                        <a href="index.php?action=eliminarServicio&id=<?= $servicio['IdServicio'] ?>"
+                            onclick="return confirm('¿Estás seguro de eliminar este Servicio?')">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

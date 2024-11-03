@@ -93,6 +93,10 @@ if (isset($_GET['action'])) {
         case 'eliminarUsuario':
             $controladorUsuario->eliminar($_GET['id'], $_GET['IdRol']);
             break;
+
+        case 'eliminarServicio':
+            $controladorServicio->eliminar($_GET['id']);
+            break;
         
         case 'perfil':
             $controladorUsuario->verPerfil();
