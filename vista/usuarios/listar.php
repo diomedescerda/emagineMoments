@@ -4,7 +4,7 @@
 
 <?php echo "Administrador"; ?>
 <h1>Lista de Usuarios</h1>
-<a href="index.php?action=crear">Crear Usuario</a>
+<a href="index.php?action=crearUsuario">Crear Usuario</a>
 
 
 <table border="1">
@@ -35,8 +35,8 @@
                 <td><?= $usuario['Telefono'] ?></td>
                 <td><?= $usuario['Nombre'] ?></td>
                 <td>
-                    <a href="index.php?action=editar&id=<?= $usuario['IdUsuario'] ?>">Editar</a>
-                    <a href="index.php?action=eliminar&id=<?= $usuario['IdUsuario'] ?>&IdRol=<?=$usuario['IdRol'] ?>" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a>
+                    <a href="index.php?action=editarUsuario&id=<?= $usuario['IdUsuario'] ?>">Editar</a>
+                    <a href="index.php?action=eliminarUsuario&id=<?= $usuario['IdUsuario'] ?>&IdRol=<?=$usuario['IdRol'] ?>" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a>
                 </td>
             </tr>
         <?php endforeach; ?>

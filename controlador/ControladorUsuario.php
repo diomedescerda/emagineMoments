@@ -24,7 +24,7 @@ class ControladorUsuario {
         if ($usuario) {
             session_start();
             $_SESSION['usuario'] = $usuario;
-            if($usuario['IdRol'] == 1){header('Location: index.php?action=listar');}
+            if($usuario['IdRol'] == 1){header('Location: index.php?action=listarUsuarios');}
             elseif($usuario['IdRol'] == 3){header('Location: index.php?action=listarServicios&id=' . $usuario['IdUsuario']);}
             else {header('Location: index.php');}
                 
@@ -86,7 +86,7 @@ class ControladorUsuario {
         $IdTipoPrestador = $_POST['IdTipoPrestador'];
     
         $this->modelo->actualizarUsuario($id, $PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $IdRol, $IdTipoPrestador);
-        header('Location: index.php?action=listar');
+        header('Location: index.php?action=listarUsuarios');
     }
 
     public function eliminar($id, $IdRol) {
@@ -96,7 +96,7 @@ class ControladorUsuario {
             $this->verificarAccesoAdministrador();
         }
         $this->modelo->eliminarUsuario($id, $IdRol);
-        header('Location: index.php?action=listar');
+        header('Location: index.php?action=listarUsuarios');
         if($id === $_SESSION['usuario']['IdUsuario']) session_destroy();
     }
 
@@ -119,7 +119,7 @@ class ControladorUsuario {
         $idTipoPrestador = $_POST['IdTipoPrestador'];
     
         $this->modelo->crearUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono, $idTipoPrestador);
-        header('Location: index.php?action=listar');
+        header('Location: index.php?action=listarUsuarios');
     }
 
     public function verPerfil() {

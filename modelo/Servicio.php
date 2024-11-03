@@ -10,8 +10,7 @@ class Servicio
         $this->conexion = Conexion::getInstance()->getConexion();
     }
    
-    // 
-    public function agregarServicio($idTipoServicio, $IdPrestador, $Costo, $Descripcion)
+    public function crearServicio($idTipoServicio, $IdPrestador, $Costo, $Descripcion)
     {
         $stmt = $this->conexion->prepare("INSERT INTO Servicios (IdTipoServicio, IdPrestador, Costo, Descripcion) VALUES (?, ?, ?, ?)");
 
@@ -27,7 +26,6 @@ class Servicio
             die("Error en la ejecución de la consulta: " . $stmt->error);
         }
 
-        // Close the statement
         $stmt->close();
 
         return $result;
@@ -62,7 +60,6 @@ class Servicio
         return $stmt->get_result()->fetch_assoc();
     }
 
-    //
     public function actualizarServicio($id, $IdTipoServicio, $IdPrestador, $Costo, $Descripcion)
     {
         $stmt = $this->conexion->prepare("UPDATE Servicios SET IdTipoServicio = ?, IdPrestador = ?, Costo = ?, Descripcion = ? WHERE IdServicio = ?");
@@ -71,7 +68,6 @@ class Servicio
         return $stmt->execute();
     }
 
-    //
     public function eliminarServicio($id)
     {
         $stmt = $this->conexion->prepare("DELETE FROM Servicios WHERE IdServicio = ?");

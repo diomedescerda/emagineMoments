@@ -13,7 +13,7 @@ if (isset($_SESSION['usuario'])): ?>
                 <a href="index.php?action=cerrarSesion" class="logout">Cerrar Sesión</a>
             </p>
             <p>Acciones:</p>
-            <a href="index.php?action=editar" class="btn">Modificar datos</a>
+            <a href="index.php?action=editarUsuario" class="btn">Modificar datos</a>
             <a href="#" class="btn" id="eliminarCuenta">Eliminar cuenta</a>
         </div>
 

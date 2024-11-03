@@ -7,7 +7,7 @@
 <body>
     <h1>Editar Usuario</h1>
 
-    <form method="POST" action="index.php?action=actualizar<?php $selected = $usuario['IdUsuario'];
+    <form method="POST" action="index.php?action=actualizarUsuario<?php $selected = $usuario['IdUsuario'];
     if ($_SESSION['usuario']['IdRol'] === 1)
         echo "&id= $selected"; ?>">
 
@@ -46,6 +46,7 @@
 
         <div id="additionalSelects" style="display: <?= $usuario['IdRol'] == 3 ? 'block' : 'none' ?>;">
             <select name="IdTipoPrestador">
+        <!-- to do the auto select the actual value-->
                 <option value=1>Solista</option>
                 <option value=2>Banda</option>
                 <option value=3>DJ</option>

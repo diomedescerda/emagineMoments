@@ -1,5 +1,5 @@
 <h1>Crear Usuario</h1>
-<form method="POST" action="index.php?action=guardar">
+<form method="POST" action="index.php?action=guardarUsuario">
     <label for="PrimerNombre">Primer Nombre:</label>
     <input type="text" name="PrimerNombre" required><br>
 

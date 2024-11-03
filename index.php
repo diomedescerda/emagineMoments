@@ -19,7 +19,7 @@ if (isset($_GET['action'])) {
             $controladorUsuario->cerrarSesion();
             break;
 
-        case 'registrar':
+        case 'registrarUsuario':
             $controladorUsuario->registrarUsuario(
                 $_POST['IdRol'],
                 $_POST['primerNombre'],
@@ -49,32 +49,49 @@ if (isset($_GET['action'])) {
             $controladorUsuario->mostrarLaberinto();
             break;
         
-        case 'listar':
+        case 'listarUsuarios':
             $controladorUsuario->listar();
             break;
 
         case 'listarServicios':
-            $controladorServicio->listarMisServicios($_GET['id']);
+            $controladorServicio->listarMisServicios();
             break;
         
-        case 'editar':
-            $controladorUsuario->mostrarFormularioEditar($_GET['id'] ?? NULL);
-            break;
-        
-        case 'actualizar':
-            $controladorUsuario->actualizar($_GET['id'] ?? NULL);
-            break;
-
-        case 'eliminar':
-            $controladorUsuario->eliminar($_GET['id'], $_GET['IdRol']);
-            break;
-        
-        case 'crear':
+        case 'crearUsuario':
             $controladorUsuario->mostrarFormularioCrear();
             break;
 
-        case 'guardar':
+        case 'crearServicio':
+            $controladorServicio->mostrarFormularioCrear();
+            break;
+
+        case 'guardarUsuario':
             $controladorUsuario->crear();
+            break;
+        
+        case 'guardarServicio':
+            $controladorServicio->crear();
+            break;
+        
+        case 'editarUsuario':
+            $controladorUsuario->mostrarFormularioEditar($_GET['id'] ?? NULL);
+            break;
+
+        case 'editarServicio':
+            $controladorServicio->mostrarFormularioEditar($_GET['id']);
+            break;
+
+        
+        case 'actualizarUsuario':
+            $controladorUsuario->actualizar($_GET['id'] ?? NULL);
+            break;
+
+        case 'actualizarServicio':
+            $controladorServicio->actualizar($_GET['id']);
+            break;
+
+        case 'eliminarUsuario':
+            $controladorUsuario->eliminar($_GET['id'], $_GET['IdRol']);
             break;
         
         case 'perfil':

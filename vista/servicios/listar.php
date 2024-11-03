@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (isset($_SESSION['usuario'])): ?>
     <p>Bienvenido, <?= $_SESSION['usuario']['PrimerNombre'] ?> | <a href="index.php?action=cerrarSesion">Cerrar Sesión</a>
     </p>
@@ -33,7 +32,7 @@ if (isset($_SESSION['usuario'])): ?>
                     <td><?= $servicio['Costo'] ?></td>
                     <td><?= $servicio['Descripcion'] ?></td>
                     <td>
-                        <a href="index.php?action=editar&id=<?= $servicio['IdServicio'] ?>">Editar</a>
+                        <a href="index.php?action=editarServicio&id=<?= $servicio['IdServicio'] ?>">Editar</a>
                         <a href="index.php?action=eliminar&id=<?= $servicio['IdServicio'] ?>"
                             onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a>
                     </td>

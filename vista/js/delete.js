@@ -14,7 +14,7 @@ document.getElementById('eliminarCuenta').addEventListener('click', function(eve
     }).then((result) => {
         if (result.isConfirmed) {
             // Si el usuario confirma, redirigimos a la acción de eliminar
-            window.location.href = 'index.php?action=eliminar';
+            window.location.href = 'index.php?action=eliminarUsuario';
         }
     });
 });

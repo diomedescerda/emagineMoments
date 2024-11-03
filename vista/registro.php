@@ -13,7 +13,7 @@
     <div class="register-container">
         <img src="./vista/img/logo.png" class="logo" alt="Logo">
         <h2>Registro de Usuario</h2>
-        <form id="registerForm" method="POST" action="index.php?action=registrar">
+        <form id="registerForm" method="POST" action="index.php?action=registrarUsuario">
             <div class="form-group">
                 <label for="primerNombre">Primer Nombre</label>
                 <input type="text" id="primerNombre" name="primerNombre" required>
