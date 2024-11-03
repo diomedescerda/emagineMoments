@@ -57,4 +57,10 @@ class ControladorServicio {
         $this->modelo->eliminarServicio($id);
         header('Location: index.php?action=listarServicios');
     }
+    public function mostrarServicios() {
+        //$this->verificarAccesoAdministrador();
+        session_start();
+        $servicios = $this->modelo->obtenerServicios();
+        require 'vista/servicios.php';
+    }
 }

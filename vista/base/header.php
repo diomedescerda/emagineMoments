@@ -16,7 +16,7 @@
             </li>
             <li>
                 <a href="">
-                    <p>Servicios</p>
+                    <a href="index.php?action=consultarServicios"><p>Servicios</p></a>
                 </a>
             </li>
             <li>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,11 @@
     <title>Laberinto Musical</title>
     <link href="./vista/styles/laberinto.css" rel="stylesheet">
 </head>
+
 <body>
-    <?php include('base/header.php'); ?>
+    <?php
+    session_start();
+    include('base/header.php'); ?>
     <div class="options">
         <label for="dificultad">Elegir dificultad</label>
 
@@ -17,7 +21,7 @@
             <option value="medio" selected>Medio</option>
             <option value="difícil">Dificil</option>
             <option value="extremo">Extremo</option>
-        </select> 
+        </select>
         <button class="button" id="generateMaze">Generar Nuevo Laberinto</button>
     </div>
     <div id="maze"></div>
@@ -26,4 +30,5 @@
     <script src="./vista/js/maze.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+
 </html>

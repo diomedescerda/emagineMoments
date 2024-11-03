@@ -101,6 +101,10 @@ if (isset($_GET['action'])) {
         case 'perfil':
             $controladorUsuario->verPerfil();
             break;
+
+        case 'consultarServicios':
+            $controladorServicio->mostrarServicios();
+            break;
         
         default:
             $controladorUsuario->mostrarLaberinto();

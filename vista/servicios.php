@@ -4,9 +4,7 @@ if (isset($_SESSION['usuario'])): ?>
     </p>
 <?php endif; ?>
 
-<?php echo "Prestador"; ?>
 <h1>Lista de Servicios</h1>
-<a href="index.php?action=crearServicio">Crear Servicio</a>
 
 <table border="1">
     <thead>
