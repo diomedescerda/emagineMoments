@@ -25,6 +25,7 @@ class ControladorUsuario {
             session_start();
             $_SESSION['usuario'] = $usuario;
             if($usuario['IdRol'] == 1){header('Location: index.php?action=listar');}
+            elseif($usuario['IdRol'] == 3){header('Location: index.php?action=listarServicios&id=' . $usuario['IdUsuario']);}
             else {header('Location: index.php');}
                 
         } else {

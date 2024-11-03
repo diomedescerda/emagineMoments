@@ -1,24 +1,26 @@
 <?php
 require_once 'controlador/ControladorUsuario.php';
+require_once 'controlador/ControladorServicio.php';
 
-$controlador = new ControladorUsuario();
+$controladorUsuario = new ControladorUsuario();
+$controladorServicio = new controladorServicio();
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'iniciarSesion':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $controlador->iniciarSesion();
+                $controladorUsuario->iniciarSesion();
             } else {
-                $controlador->mostrarLogin();
+                $controladorUsuario->mostrarLogin();
             }
             break;
 
         case 'cerrarSesion':
-            $controlador->cerrarSesion();
+            $controladorUsuario->cerrarSesion();
             break;
 
         case 'registrar':
-            $controlador->registrarUsuario(
+            $controladorUsuario->registrarUsuario(
                 $_POST['IdRol'],
                 $_POST['primerNombre'],
                 $_POST['otrosNombres'],
@@ -32,53 +34,57 @@ if (isset($_GET['action'])) {
             break;
 
         case 'mostrarRegistro':
-            $controlador->mostrarRegistro();
+            $controladorUsuario->mostrarRegistro();
             break;
 
         case 'mostrarBienvenida':
-            $controlador->mostrarBienvenida();
+            $controladorUsuario->mostrarBienvenida();
             break;
 
         case  'mostrarLogin':
-            $controlador->mostrarLogin();
+            $controladorUsuario->mostrarLogin();
             break;
         
         case 'mostrarLaberinto':
-            $controlador->mostrarLaberinto();
+            $controladorUsuario->mostrarLaberinto();
             break;
         
         case 'listar':
-            $controlador->listar();
+            $controladorUsuario->listar();
+            break;
+
+        case 'listarServicios':
+            $controladorServicio->listarMisServicios($_GET['id']);
             break;
         
         case 'editar':
-            $controlador->mostrarFormularioEditar($_GET['id'] ?? NULL);
+            $controladorUsuario->mostrarFormularioEditar($_GET['id'] ?? NULL);
             break;
         
         case 'actualizar':
-            $controlador->actualizar($_GET['id'] ?? NULL);
+            $controladorUsuario->actualizar($_GET['id'] ?? NULL);
             break;
 
         case 'eliminar':
-            $controlador->eliminar($_GET['id'], $_GET['IdRol']);
+            $controladorUsuario->eliminar($_GET['id'], $_GET['IdRol']);
             break;
         
         case 'crear':
-            $controlador->mostrarFormularioCrear();
+            $controladorUsuario->mostrarFormularioCrear();
             break;
 
         case 'guardar':
-            $controlador->crear();
+            $controladorUsuario->crear();
             break;
         
         case 'perfil':
-            $controlador->verPerfil();
+            $controladorUsuario->verPerfil();
             break;
         
         default:
-            $controlador->mostrarLaberinto();
+            $controladorUsuario->mostrarLaberinto();
             break;
     }
 } else {
-    $controlador->mostrarBienvenida();
+    $controladorUsuario->mostrarBienvenida();
 }

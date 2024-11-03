@@ -7,7 +7,11 @@ class Usuario
 
     public function __construct()
     {
-        $this->conexion = (new Conexion())->getConexion();
+        $this->conexion = Conexion::getInstance()->getConexion();
+    }
+
+    public function getConexion() {
+        return $this->conexion;
     }
 
     public function verificarCredenciales($email, $contrasena)
