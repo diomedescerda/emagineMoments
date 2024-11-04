@@ -1,14 +1,17 @@
 <?php
 require_once 'modelo/Usuario.php';
 require_once 'modelo/Rol.php';
+require_once 'modelo/TipoPrestador.php';
 
 class ControladorUsuario {
     private $modelo;
     private $rol;
+    private $tipoPrestador;
 
     public function __construct() {
         $this->modelo = new Usuario();
         $this->rol = new Rol();
+        $this->tipoPrestador = new TipoPrestador();
     }
 
     public function mostrarLogin() {
@@ -44,6 +47,7 @@ class ControladorUsuario {
 
     public function mostrarRegistro() {
         $roles = $this->rol->obtenerRoles();
+        $tipoPrestadores = $this->tipoPrestador->obtenerTipoPrestadores();
         require 'vista/registro.php';  
     }
 
@@ -70,6 +74,7 @@ class ControladorUsuario {
             $this->verificarAccesoAdministrador();
             $usuario = $this->modelo->obtenerUsuarioPorId($id);
         }
+        $tipoPrestadores = $this->tipoPrestador->obtenerTipoPrestadores();
         $roles = $this->rol->obtenerRoles();
         require 'vista/usuarios/editar.php';
     }
@@ -108,6 +113,7 @@ class ControladorUsuario {
     public function mostrarFormularioCrear() {
         $this->verificarAccesoAdministrador();
         $roles = $this->rol->obtenerRoles();
+        $tipoPrestadores = $this->tipoPrestador->obtenerTipoPrestadores();
         require 'vista/usuarios/crear.php';
     }
 

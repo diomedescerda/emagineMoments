@@ -66,15 +66,12 @@
                 </select><br>
 
                 <div id="additionalSelects" style="display: none;">
-                    <select name="IdTipoPrestador">
-                        <option value=1>Solista</option>
-                        <option value=2>Banda</option>
-                        <option value=3>DJ</option>
-                        <option value=4>Chef</option>
-                        <option value=5>Comediante</option>
-                        <option value=6>Decorador</option>
-                        <option value=7>Alquiler Mobilario</option>
-                        <option value=8>Animador</option>
+                    <select name="IdTipoPrestador" id="tipoPrestadorSelect" required>
+                        <?php foreach ($tipoPrestadores as $tipoPrestador): ?>
+                            <option value="<?= $tipoPrestador['IdTipoPrestador'] ?>">
+                                <?= htmlspecialchars($tipoPrestador['Nombre']) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 

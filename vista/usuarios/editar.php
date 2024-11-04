@@ -47,17 +47,12 @@
         </select>
 
 
-        <div id="additionalSelects" style="display: <?= $usuario['IdRol'] == 3 ? 'block' : 'none' ?>;">
-            <select name="IdTipoPrestador">
-                <!-- to do the auto select the actual value-->
-                <option value=1>Solista</option>
-                <option value=2>Banda</option>
-                <option value=3>DJ</option>
-                <option value=4>Chef</option>
-                <option value=5>Comediante</option>
-                <option value=6>Decorador</option>
-                <option value=7>Alquiler Mobilario</option>
-                <option value=8>Animador</option>
+        <div id="additionalSelects" style="display: none;">
+            <select name="IdTipoPrestador" id="tipoPrestadorSelect" required>
+                <?php foreach ($tipoPrestadores as $tipoPrestador): ?>
+                    <option value="<?= $tipoPrestador['IdTipoPrestador'] ?>">
+                        <?= htmlspecialchars($tipoPrestador['Nombre']) ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 
