@@ -1,13 +1,19 @@
 <?php
 require_once 'Conexion.php';
+require_once 'Cliente.php';
+require_once 'Prestador.php';
 
 class Usuario
 {
     private $conexion;
+    private $cliente;
+    private $prestador;
 
     public function __construct()
     {
         $this->conexion = Conexion::getInstance()->getConexion();
+        $this->cliente = new Cliente();
+        $this->prestador = new Prestador();
     }
 
     public function getConexion() {
@@ -76,15 +82,11 @@ class Usuario
     {
         switch ($IdRol) {
             case 2:
-                $stmt = $this->conexion->prepare("DELETE FROM Clientes WHERE IdCliente = ?");
-                $stmt->bind_param("i", $id);
-                $stmt->execute();
+                $this->cliente->eliminarCliente($id);
                 break;
             
             case 3:
-                $stmt = $this->conexion->prepare("DELETE FROM Prestadores WHERE IdPrestador = ?");
-                $stmt->bind_param("i", $id);
-                $stmt->execute();
+                $this->prestador->eliminarPrestador($id);
                 break;
             
             default:
@@ -100,11 +102,11 @@ class Usuario
         if ($rolAnterior) {
             switch ($rolAnterior) {
                 case 2:
-                    $this->conexion->query("DELETE FROM clientes WHERE IdCliente= $idUsuario");
+                    $this->cliente->eliminarCliente($idUsuario);
                     break;
 
                 case 3:
-                    $this->conexion->query("DELETE FROM prestadores WHERE IdPrestador= $idUsuario");
+                    $this->prestador->eliminarPrestador($idUsuario);
                     break;
 
                 default:
@@ -114,11 +116,11 @@ class Usuario
 
         switch ($rolNuevo) {
             case 2:
-                $this->conexion->query("INSERT INTO clientes (IdCliente) VALUES ($idUsuario)");
+                $this->cliente->crearCliente($idUsuario);
                 break;
 
             case 3:
-                $this->conexion->query("INSERT INTO prestadores (IdPrestador, IdTipoPrestador) VALUES ($idUsuario, $IdTipoPrestador)");
+                $this->prestador->crearPrestador($idUsuario, $IdTipoPrestador);
                 break;
 
             default:
