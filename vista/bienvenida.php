@@ -15,7 +15,7 @@ session_start();
 </head>
 
 <body>
-    <?php include('base/header.php'); ?>
+    <?php require_once('base/header.php'); ?>
     <div class="page">
         <section id="intro">
             <h1>Imagina el momento, nosotros lo hacemos realidad.</h1>
@@ -128,7 +128,7 @@ session_start();
 -->
     </div>
 
-    <?php include('base/footer.php'); ?>
+    <?php require_once('base/footer.php'); ?>
     <script src="./js/scroll_infinito.js"></script>
 </body>
 

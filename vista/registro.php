@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
-    <link rel="stylesheet" href="./vista/styles/register.css">
+    <link rel="stylesheet" href="./vista/styles/registro.css">
     <link rel="icon" href="./vista/img/favicon.png" type="image/png" sizes="64x64">
 </head>
 
 <body>
     <div class="register-container">
-        <img src="./vista/img/logo.png" class="logo" alt="Logo">
+        <a href="index.php"> <img src="./vista/img/logo.png" alt="e'magine events logo" class="logo"></a>
         <h2>Registro de Usuario</h2>
         <form id="registerForm" method="POST" action="index.php?action=registrarUsuario">
             <div class="form-group">
@@ -43,7 +43,7 @@
                 <label for="password">Contraseña</label>
                 <div class="password-container">
                     <input type="password" id="password" name="contrasena" placeholder="********" required>
-                    <button type="button" id="togglePassword">Mostrar</button>
+                    <button type="button" id="togglePassword" class="button">Mostrar</button>
                 </div>
             </div>
 
@@ -83,12 +83,13 @@
                 </script>
             </div>
 
-            <button class="submit-button" type="submit">Registrarse</button>
+            <button class="button" type="submit">Registrarse</button>
         </form>
         <p class="login-text">¿Ya tienes cuenta? <a href="login.html">Iniciar sesión aquí</a></p>
     </div>
-
+    <!--
     <script src="./js/script.js"></script>
+                -->
 </body>
 
 </html>

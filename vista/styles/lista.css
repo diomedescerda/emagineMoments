@@ -1,0 +1,52 @@
+@import url("./base.css");
+
+/* Style for the table */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-family: var(--mono);
+    font-size: 1rem;
+}
+
+/* Header styling */
+table thead {
+    background-color: var(--magenta);
+    color: var(--white);
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid var(--white);
+    text-align: left;
+}
+
+table tbody tr:hover {
+    background-color: var(--plum);
+}
+
+table tbody tr:nth-child(even):hover {
+    background-color: var(--plum);
+}
+
+table tbody tr:nth-child(even) {
+    background-color: var(--dkblue);
+}
+
+table td a {
+    color: var(--magenta);
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+table td a:hover {
+    color: var(--hotmag);
+    text-decoration: underline;
+}
+
+.info {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-around;
+}

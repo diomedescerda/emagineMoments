@@ -12,7 +12,7 @@
 <body>
     <?php
     session_start();
-    include('base/header.php'); ?>
+    require_once('base/header.php'); ?>
     <div class="options">
         <label for="dificultad">Elegir dificultad</label>
 
@@ -25,7 +25,7 @@
         <button class="button" id="generateMaze">Generar Nuevo Laberinto</button>
     </div>
     <div id="maze"></div>
-    <?php include('base/footer.php'); ?>
+    <?php require_once('base/footer.php'); ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./vista/js/maze.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

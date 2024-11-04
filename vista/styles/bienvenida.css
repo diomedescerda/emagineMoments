@@ -1,428 +1,218 @@
-/* variables declared here - these are the colors for our pages, as well as the font stacks and sizes. */
-:root {
-    --black: #171321;
-    --dkblue: #0d314b;
-    --plum: #4b0d49;
-    --hotmag: #ff17e4;
-    --magenta: #e310cb;
-    --aqua: #86fbfb;
-    --white: #fcfcfc;
-    --font-size: 1.3rem;
-    --mono: "Oxygen mono", monospace;
-    --sans: Oxygen, sans-serif;
-  }
-  
-  /* border box model: https://css-tricks.com/box-sizing/ */
-  html {
-    box-sizing: border-box;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-  
-  /* generic styles for the page */
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: var(--sans);
-    background-color: var(--black);
-    color: var(--white);
-    font-size: var(--font-size);
-  }
-  
-  h1,
-  h2,
-  h3 {
-    margin: 0;
-  }
-  
-  a {
-    color: var(--magenta);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: var(--hotmag);
-    text-decoration: none;
-  }
-  
-  /*header*/
-  nav {
-    padding: 1rem;
-    background-color: var(--white);
-  }
-  
-  nav ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  nav li:first-child{
-    flex-basis: 100%;
-    text-align: center;
-  }
-  
-  nav img {
-    width: 17rem;
-  }
-  
-  @media (min-width: 850px){
-    nav {
-      margin: 0 auto;
-    }
-    
-    nav li:first-child{
-      flex-basis: auto;
-      text-align: left;
-      margin-right: auto;
-    }
-  }
-  
-  /* body */
-  
-  .page {
-    padding-bottom: 0.1rem;
-  }
-  
-  #intro {
-    padding-bottom: 4rem;
-    background-image: url("../img/party.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 40rem;
-    position: relative;
-  }
-  
-  #intro h1, #intro p {
-      padding: 0rem 4rem 0rem 4rem;
-  }
-  
-  #intro h1 {
-    font-size: 2.5rem;
-    font-family: var(--mono);
-    padding-top: 10rem;
-    text-shadow: 0px 0px 0 rgb(230,230,230),1px 1px 0 rgb(204,204,204),2px 2px 0 rgb(179,179,179),3px 3px 0 rgb(153,153,153),4px 4px 0 rgb(128,128,128),5px 5px 0 rgb(102,102,102),6px 6px 0 rgb(77,77,77),7px 7px 0 rgb(51,51,51),8px 8px 0 rgb(26,26,26),9px 9px 0 rgb(0,0,0), 10px 10px 0 rgb(-25,-25,-25),11px 11px 10px rgba(0,0,0,0.3),11px 11px 1px rgba(0,0,0,0.5),0px 0px 10px rgba(0,0,0,.2);
-  }
-  
-  #intro p {
-      font-size: 1.5rem;
-      text-shadow: 0px 0px 0 rgb(191,191,191),1px 1px 0 rgb(128,128,128),2px 2px 0 rgb(64,64,64),3px 3px 0 rgb(0,0,0), 4px 4px 0 rgb(-64,-64,-64),5px 5px 4px rgba(0,0,0,0.3),5px 5px 1px rgba(0,0,0,0.5),0px 0px 4px rgba(0,0,0,.2);
-  }
-  
-  #intro a {
-      margin-left: 4rem;
-  }
-  
-  .button {
-      background-color: var(--magenta);
-      color: white;
-      padding: 0.5rem 1.5rem;
-      border-radius: 5px;
-      font-weight: bold;
-  }
-  
-  .button:hover {
-      color: white;
-      background-color: var(--hotmag);
-  }
-  
-  /* container */
-  
-  #artists h3 {
-    padding-left: 20px;
-  }
-  
-  .card-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      padding: 1rem;
-      gap: 1rem;
-  }
-  .card-list .card-item {
-      background: var(--white);
-      padding: 26px;
-      border-radius: 8px;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
-      list-style: none;
-      cursor: pointer;
-      text-decoration: none;
-      border: 2px solid transparent;
-      transition: border 0.5s ease;
-  }
-  .card-list .card-item:hover {
-      border: 2px solid var(--black);
-  }
-  .card-list .card-item img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      border-radius: 8px;
-      object-fit: cover;
-  }
-  .card-list span {
-      display: inline-block;
-      background: var(--magenta);
-      margin-top: 32px;
-      padding: 8px 15px;
-      font-size: 0.75rem;
-      border-radius: 50px;
-      font-weight: 600;
-  }
-  .card-list .banda {
-      background-color: #F7DFF5; 
-      color: #B22485;
-  }   
-  .card-list .solista {
-      background-color: #d1e8ff;
-      color: #2968a8;
-  }
-  .card-list .instrumentista {
-      background-color: #d6f8d6; 
-      color: #205c20;
-  }
-  .card-item h3 {
-      color: var(--black);
-      font-size: 1.438rem;
-      margin-top: 28px;
-      font-weight: 600;
-  }
-  .card-item .arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: rotate(-35deg);
-      height: 40px;
-      width: 40px;
-      color: var(--black);
-      border: 1px solid var(--black);
-      border-radius: 50%;
-      margin-top: 40px;
-      transition: 0.2s ease;
-  }
-  .card-list .card-item:hover .arrow  {
-      background: var(--black);
-      color: var(--white); 
-  }
-  @media (max-width: 1200px) {
-      .card-list .card-item {
-          padding: 15px;
-      }
-  }
-  @media screen and (max-width: 980px) {
-      .card-list {
-          margin: 0 auto;
-      }
-  }
-  
-  /* footer */
-  
-  footer {
-    background-color: var(--hot-mag);
-  }
-  
-  footer .footer-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 3.5rem;
-    padding: 60px;
-  }
-  
-  .footer-row .footer-col h4 {
-    color: var(--white);
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  
-  .footer-col .links {
-    margin-top: 20px;
-  }
-  
-  .footer-col .links li {
-    list-style: none;
-    margin-bottom: 10px;
-  }
-  
-  .footer-col .links li a {
-    text-decoration: none;
-    color: var(--white);
-  }
-  
-  .footer-col .links li a:hover {
-    color: var(--hotmag);
-  }
-  
-  .footer-col p {
-    margin: 20px 0;
-    color: var(--white);
-    max-width: 300px;
-  }
-  
-  .footer-col form {
-    display: flex;
-    gap: 5px;
-  }
-  
-  .footer-col input {
-    height: 40px;
-    border-radius: 6px;
-    background: none;
-    width: 100%;
-    outline: none;
-    border: 1px solid var(--white);
-    caret-color: var(--white);
-    color: var(--white);
-    padding-left: 10px;
-  }
-  
-  .footer-col input::placeholder {
-    color: var(--white);
-  }
-  
-   .footer-col form button {
-    background: var(--white);
-    outline: none;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: 0.2s ease;
-  }
-  
-  .footer-col form button:hover {
-    background: var(--hotmag);
-  }
-  
-  .footer-col .icons {
-    display: flex;
-    margin-top: 30px;
-    gap: 30px;
-    cursor: pointer;
-  }
-  
-  .footer-col .icons i {
-    color: var(--white);
-  }
-  
-  .footer-col .icons i:hover  {
-    color: var(--hotmag);
-  }
-  
-  @media (max-width: 768px) {
-    footer {
-      position: relative;
-      bottom: 0;
-      left: 0;
-      transform: none;
-      width: 100%;
-      border-radius: 0;
-    }
-  
-    footer .footer-row {
-      padding: 20px;
-      gap: 1rem;
-    }
-  
-    .footer-col form {
-      display: block;
-    }
-  
-    .footer-col form :where(input, button) {
-      width: 100%;
-    }
-  
-    .footer-col form button {
-      margin: 10px 0 0 0;
-    }
-  }
-  
-  /* Scroll infinito en pantallas pequeñas (por ahora) */
-  @media (max-width: 768px) {
-    .card-list {
-      display: flex;
-      overflow-x: auto;
-      white-space: nowrap;
-      scroll-behavior: smooth;
-      cursor: grab;
-    }
-  
-    .card-list:active {
-        cursor: grabbing;
-    }
-  
-    .card-item {
-        flex: 0 0 auto; /* las tarjetas no se ajustan al ancho del contenedor */
-        width: 500px;
-        margin-right: 10px;
-    }
-  
-    .card-list::-webkit-scrollbar {
-        display: none; /* Oculta la barra de scroll */
-    }
-  }
+ @import url("./base.css");
 
-/* Encapsulación de estilos para la sección "Más Info" */
-.info-section {
-  margin: 20px 0;
-  font-family: 'Roboto', sans-serif;
-}
+ .page {
+   padding-bottom: 0.1rem;
+ }
 
-.info-container {
-  max-width: 800px;
-  margin: 0 auto;
-  /* padding-left: 20px; */
-}
+ #intro {
+   padding-bottom: 4rem;
+   background-image: url("../img/party.jpg");
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+   height: 40rem;
+   position: relative;
+ }
 
-.info-section h1,
-.info-section h2 {
-  color: #ffffff;
-  text-align: center;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
+ #intro h1,
+ #intro p {
+   padding: 0rem 4rem 0rem 4rem;
+ }
 
-.info-section h2 {
-  margin-top: 30px;
-}
+ #intro h1 {
+   font-size: 2.5rem;
+   font-family: var(--mono);
+   padding-top: 10rem;
+   text-shadow: 0px 0px 0 rgb(230, 230, 230), 1px 1px 0 rgb(204, 204, 204), 2px 2px 0 rgb(179, 179, 179), 3px 3px 0 rgb(153, 153, 153), 4px 4px 0 rgb(128, 128, 128), 5px 5px 0 rgb(102, 102, 102), 6px 6px 0 rgb(77, 77, 77), 7px 7px 0 rgb(51, 51, 51), 8px 8px 0 rgb(26, 26, 26), 9px 9px 0 rgb(0, 0, 0), 10px 10px 0 rgb(-25, -25, -25), 11px 11px 10px rgba(0, 0, 0, 0.3), 11px 11px 1px rgba(0, 0, 0, 0.5), 0px 0px 10px rgba(0, 0, 0, .2);
+ }
 
-.info-section p {
-  color: #ffffff;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
+ #intro p {
+   font-size: 1.5rem;
+   text-shadow: 0px 0px 0 rgb(191, 191, 191), 1px 1px 0 rgb(128, 128, 128), 2px 2px 0 rgb(64, 64, 64), 3px 3px 0 rgb(0, 0, 0), 4px 4px 0 rgb(-64, -64, -64), 5px 5px 4px rgba(0, 0, 0, 0.3), 5px 5px 1px rgba(0, 0, 0, 0.5), 0px 0px 4px rgba(0, 0, 0, .2);
+ }
 
-.info-section ul {
-  list-style-type: disc;
-  margin-left: 20px;
-}
+ #intro a {
+   margin-left: 4rem;
+ }
 
-.info-section li {
-  margin-bottom: 10px;
-  color: #ffffff;
-}
+ /* container */
 
-.info-section strong {
-  color: #ffffff;
-}
+ #artists h3 {
+   padding-left: 20px;
+ }
 
-/* Estilos responsivos */
-@media (max-width: 768px) {
-  .info-section {
-      padding: 20px;
-  }
+ .card-list {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+   padding: 1rem;
+   gap: 1rem;
+ }
 
-  .info-section h1,
-  .info-section h2 {
-      font-size: 1.5em;
-  }
-}
+ .card-list .card-item {
+   background: var(--white);
+   padding: 26px;
+   border-radius: 8px;
+   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+   list-style: none;
+   cursor: pointer;
+   text-decoration: none;
+   border: 2px solid transparent;
+   transition: border 0.5s ease;
+ }
+
+ .card-list .card-item:hover {
+   border: 2px solid var(--black);
+ }
+
+ .card-list .card-item img {
+   width: 100%;
+   aspect-ratio: 16/9;
+   border-radius: 8px;
+   object-fit: cover;
+ }
+
+ .card-list span {
+   display: inline-block;
+   background: var(--magenta);
+   margin-top: 32px;
+   padding: 8px 15px;
+   font-size: 0.75rem;
+   border-radius: 50px;
+   font-weight: 600;
+ }
+
+ .card-list .banda {
+   background-color: #F7DFF5;
+   color: #B22485;
+ }
+
+ .card-list .solista {
+   background-color: #d1e8ff;
+   color: #2968a8;
+ }
+
+ .card-list .instrumentista {
+   background-color: #d6f8d6;
+   color: #205c20;
+ }
+
+ .card-item h3 {
+   color: var(--black);
+   font-size: 1.438rem;
+   margin-top: 28px;
+   font-weight: 600;
+ }
+
+ .card-item .arrow {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transform: rotate(-35deg);
+   height: 40px;
+   width: 40px;
+   color: var(--black);
+   border: 1px solid var(--black);
+   border-radius: 50%;
+   margin-top: 40px;
+   transition: 0.2s ease;
+ }
+
+ .card-list .card-item:hover .arrow {
+   background: var(--black);
+   color: var(--white);
+ }
+
+ @media (max-width: 1200px) {
+   .card-list .card-item {
+     padding: 15px;
+   }
+ }
+
+ @media screen and (max-width: 980px) {
+   .card-list {
+     margin: 0 auto;
+   }
+ }
+
+ /* Scroll infinito en pantallas pequeñas (por ahora) */
+ @media (max-width: 768px) {
+   .card-list {
+     display: flex;
+     overflow-x: auto;
+     white-space: nowrap;
+     scroll-behavior: smooth;
+     cursor: grab;
+   }
+
+   .card-list:active {
+     cursor: grabbing;
+   }
+
+   .card-item {
+     flex: 0 0 auto;
+     /* las tarjetas no se ajustan al ancho del contenedor */
+     width: 500px;
+     margin-right: 10px;
+   }
+
+   .card-list::-webkit-scrollbar {
+     display: none;
+     /* Oculta la barra de scroll */
+   }
+ }
+
+ /* Encapsulación de estilos para la sección "Más Info" */
+ .info-section {
+   margin: 20px 0;
+   font-family: 'Roboto', sans-serif;
+ }
+
+ .info-container {
+   max-width: 800px;
+   margin: 0 auto;
+   /* padding-left: 20px; */
+ }
+
+ .info-section h1,
+ .info-section h2 {
+   color: #ffffff;
+   text-align: center;
+   font-weight: 700;
+   margin-bottom: 20px;
+ }
+
+ .info-section h2 {
+   margin-top: 30px;
+ }
+
+ .info-section p {
+   color: #ffffff;
+   line-height: 1.6;
+   margin-bottom: 15px;
+ }
+
+ .info-section ul {
+   list-style-type: disc;
+   margin-left: 20px;
+ }
+
+ .info-section li {
+   margin-bottom: 10px;
+   color: #ffffff;
+ }
+
+ .info-section strong {
+   color: #ffffff;
+ }
+
+ /* Estilos responsivos */
+ @media (max-width: 768px) {
+   .info-section {
+     padding: 20px;
+   }
+
+   .info-section h1,
+   .info-section h2 {
+     font-size: 1.5em;
+   }
+ }

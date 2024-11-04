@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión</title>
-    <link rel="stylesheet" href="./vista/styles/styles.css" >
+    <link rel="stylesheet" href="./vista/styles/styles.css">
     <link rel="icon" href="./vista/img/favicon.png" type="image/png" sizes="64x64">
     
 </head>
