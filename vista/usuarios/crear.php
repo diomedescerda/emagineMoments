@@ -26,9 +26,9 @@
 
     <label for="IdRol">Rol:</label>
     <select name="IdRol" id="roleSelect" required>
-        <option value="1">Administrador</option>
-        <option value="2">Cliente</option>
-        <option value="3">Prestador</option>
+        <?php foreach ($roles as $rol): ?>
+            <option value="<?= $rol['IdRol'] ?>"><?= htmlspecialchars($rol['Nombre']) ?></option>
+        <?php endforeach; ?>
     </select><br>
 
     <div id="additionalSelects" style="display: none;">

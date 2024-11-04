@@ -35,18 +35,21 @@
         <label for="IdRol">Rol:</label>
         <select name="IdRol" id="roleSelect" required>
             <?php
-            if ($_SESSION['usuario']['IdRol'] === 1) {
-                $selected = $usuario['IdRol'] == 1 ? 'selected' : '';
-                echo "<option value='1' $selected>Administrador</option>";
+            foreach ($roles as $rol) {
+                if ($rol['IdRol'] == 1 && $_SESSION['usuario']['IdRol'] !== 1) {
+                    continue;
+                }
+
+                $selected = ($usuario['IdRol'] == $rol['IdRol']) ? 'selected' : '';
+                echo "<option value='{$rol['IdRol']}' $selected>" . htmlspecialchars($rol['Nombre']) . "</option>";
             }
             ?>
-            <option value="2" <?= $usuario['IdRol'] == 2 ? 'selected' : '' ?>>Cliente</option>
-            <option value="3" <?= $usuario['IdRol'] == 3 ? 'selected' : '' ?>>Prestador</option>
         </select>
+
 
         <div id="additionalSelects" style="display: <?= $usuario['IdRol'] == 3 ? 'block' : 'none' ?>;">
             <select name="IdTipoPrestador">
-        <!-- to do the auto select the actual value-->
+                <!-- to do the auto select the actual value-->
                 <option value=1>Solista</option>
                 <option value=2>Banda</option>
                 <option value=3>DJ</option>

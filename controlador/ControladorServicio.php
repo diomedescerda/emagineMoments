@@ -3,26 +3,29 @@ require_once 'modelo/Servicio.php';
 
 class ControladorServicio {
     private $modelo;
+    //private $controladorUsuario;
 
     public function __construct() {
         $this->modelo = new Servicio();
+        //$this->controladorUsuario = new ControladorUsuario();
     }
 
     public function listarMisServicios() {
-        //$this->verificarAccesoAdministrador();
+        //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
         $servicios = $this->modelo->obtenerMisServicios($_SESSION['usuario']['IdUsuario']);
         require 'vista/servicios/listar.php';
     }
 
     public function mostrarFormularioCrear() {
-        //$this->verificarAccesoAdministrador();
+        //$this->controladorUsuario->verificarAccesoAdministrador();
+        session_start();
         require 'vista/servicios/crear.php';
     }
 
     public function crear() {
+        //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
-        //$this->verificarAccesoAdministrador();
         $idTipoServicio = $_POST['IdTipoServicio'];
         $idPrestador = $_SESSION['usuario']['IdUsuario'];
         $costo = $_POST['Costo'];
@@ -32,16 +35,15 @@ class ControladorServicio {
     }
 
     public function mostrarFormularioEditar($id) {
+        //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
-        //$this->verificarAccesoAdministrador();
         $servicio = $this->modelo->obtenerServicioPorId($id);
         require 'vista/servicios/editar.php';
     }
 
     public function actualizar($id) {
+        //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
-        //$this->verificarAccesoAdministrador();
-
         $idTipoServicio = $_POST['IdTipoServicio'];
         $idPrestador = $_SESSION['usuario']['IdUsuario'];
         $costo = $_POST['Costo'];
@@ -52,13 +54,13 @@ class ControladorServicio {
     }
 
     public function eliminar($id) {
+        //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
-        //$this->verificarAccesoAdministrador();
         $this->modelo->eliminarServicio($id);
         header('Location: index.php?action=listarServicios');
     }
     public function mostrarServicios() {
-        //$this->verificarAccesoAdministrador();
+        //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
         $servicios = $this->modelo->obtenerServicios();
         require 'vista/servicios.php';

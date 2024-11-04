@@ -1,11 +1,14 @@
 <?php
 require_once 'modelo/Usuario.php';
+require_once 'modelo/Rol.php';
 
 class ControladorUsuario {
     private $modelo;
+    private $rol;
 
     public function __construct() {
         $this->modelo = new Usuario();
+        $this->rol = new Rol();
     }
 
     public function mostrarLogin() {
@@ -40,6 +43,7 @@ class ControladorUsuario {
     }
 
     public function mostrarRegistro() {
+        $roles = $this->rol->obtenerRoles();
         require 'vista/registro.php';  
     }
 
@@ -66,6 +70,7 @@ class ControladorUsuario {
             $this->verificarAccesoAdministrador();
             $usuario = $this->modelo->obtenerUsuarioPorId($id);
         }
+        $roles = $this->rol->obtenerRoles();
         require 'vista/usuarios/editar.php';
     }
 
@@ -102,6 +107,7 @@ class ControladorUsuario {
 
     public function mostrarFormularioCrear() {
         $this->verificarAccesoAdministrador();
+        $roles = $this->rol->obtenerRoles();
         require 'vista/usuarios/crear.php';
     }
 
@@ -131,7 +137,7 @@ class ControladorUsuario {
         return $_SESSION['usuario']['IdUsuario'];
     }
 
-    private function verificarAccesoAdministrador(){
+    public function verificarAccesoAdministrador(){
         session_start();
         if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['IdRol'] !== 1) {
             header('Location: ./');
