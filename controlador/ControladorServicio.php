@@ -1,12 +1,15 @@
 <?php
 require_once 'modelo/Servicio.php';
+require_once 'modelo/TipoServicio.php';
 
 class ControladorServicio {
     private $modelo;
+    private $tipoServicio;
     //private $controladorUsuario;
 
     public function __construct() {
         $this->modelo = new Servicio();
+        $this->tipoServicio = new TipoServicio();
         //$this->controladorUsuario = new ControladorUsuario();
     }
 
@@ -20,6 +23,7 @@ class ControladorServicio {
     public function mostrarFormularioCrear() {
         //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
+        $tipoServicios = $this->tipoServicio->obtenerTipoServicios();
         require 'vista/servicios/crear.php';
     }
 
@@ -38,6 +42,7 @@ class ControladorServicio {
         //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
         $servicio = $this->modelo->obtenerServicioPorId($id);
+        $tipoServicios = $this->tipoServicio->obtenerTipoServicios();
         require 'vista/servicios/editar.php';
     }
 

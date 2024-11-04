@@ -7,15 +7,16 @@
 <body>
     <h1>Editar Servicio</h1>
 
-    <form method="POST" action="index.php?action=actualizarServicio&id=<?php echo $servicio['IdServicio'];?>">
+    <form method="POST" action="index.php?action=actualizarServicio&id=<?php echo $servicio['IdServicio']; ?>">
 
         <label for="IdTipoServicio">Tipo de Servicio:</label>
         <select name="IdTipoServicio" id="serviceTypeSelect" required>
-            <option value=1 <?= $servicio['IdTipoServicio'] == 1 ? 'selected' : '' ?>>Música y Entretenimiento</option>
-            <option value=2 <?= $servicio['IdTipoServicio'] == 2 ? 'selected' : '' ?>>Gastronomía y Bebidas</option>
-            <option value=3 <?= $servicio['IdTipoServicio'] == 3 ? 'selected' : '' ?>>Espectáculo y Animación</option>
-            <option value=4 <?= $servicio['IdTipoServicio'] == 4 ? 'selected' : '' ?>>Decoración y Ambientación</option>
-            <option value=5 <?= $servicio['IdTipoServicio'] == 5 ? 'selected' : '' ?>>Logística y Mobiliario</option>
+            <?php foreach ($tipoServicios as $tipoServicio): ?>
+                <option value="<?= $tipoServicio['IdTipoServicio'] ?>"
+                    <?= $servicio['IdTipoServicio'] == $tipoServicio['IdTipoServicio'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($tipoServicio['Nombre']) ?>
+                </option>
+            <?php endforeach; ?>
         </select><br>
 
         <label for="Costo">Costo:</label>
