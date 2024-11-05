@@ -1,0 +1,25 @@
+[Usuario]-(Registrarse en el sistema {bg:green})
+[Usuario]-(Iniciar sesion {bg:green})
+[Usuario]-(Jugar laberinto {bg:green})
+(Iniciar sesion {bg:green})<(Ver su perfil{bg:green})
+(Ver su perfil)<(Modificar sus datos{bg:green})
+(Ver su perfil)<(Eliminar su cuenta{bg:green})
+[Administrador]-(Ver el listador de usuarios{bg:green})
+(Ver el listador de usuarios)<(Editar usuario{bg:green})
+(Ver el listador de usuarios)<(Eliminar usuario{bg:green})
+(Ver el listador de usuarios)<(Crear usuario{bg:green})
+[Cliente]^[Usuario]
+[Proveedor]^[Usuario]
+[Administrador]^[Cliente]
+[Administrador]^[Proveedor]
+[Cliente]-(Consultar servicios{bg:green})
+[Cliente]-(Ver historial de contratos{bg:yellow})
+(Ver historial de contratos)<(Reseñar servicio{bg:red})
+(Contratar servicio)<(Cancelar servicio{bg:yellow})
+(Consultar servicios)<(Contratar servicio{bg:yellow})
+[Proveedor]-(Listar servicios{bg:green})
+[Proveedor]-(Consultar contratos{bg:yellow})
+(Listar servicios)<(Agregar servicio{bg:green})
+(Listar servicios)<(Editar servicio{bg:green})
+(Listar servicios)<(Eliminar servicio{bg:green})
+(Consultar contratos)<(Cancelar contrato{bg:yellow})
