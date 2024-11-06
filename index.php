@@ -1,9 +1,11 @@
 <?php
 require_once 'controlador/ControladorUsuario.php';
 require_once 'controlador/ControladorServicio.php';
+require_once 'controlador/ControladorContrato.php';
 
 $controladorUsuario = new ControladorUsuario();
 $controladorServicio = new controladorServicio();
+$controladorContrato = new controladorContrato();
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
@@ -55,6 +57,10 @@ if (isset($_GET['action'])) {
 
         case 'listarServicios':
             $controladorServicio->listarMisServicios();
+            break;
+
+        case 'listarContratos':
+            $controladorContrato->listarMisContratos();
             break;
         
         case 'crearUsuario':

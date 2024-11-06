@@ -18,7 +18,7 @@
 (Contratar servicio)<(Cancelar servicio{bg:yellow})
 (Consultar servicios)<(Contratar servicio{bg:yellow})
 [Proveedor]-(Listar servicios{bg:green})
-[Proveedor]-(Consultar contratos{bg:yellow})
+[Proveedor]-(Consultar contratos{bg:green})
 (Listar servicios)<(Agregar servicio{bg:green})
 (Listar servicios)<(Editar servicio{bg:green})
 (Listar servicios)<(Eliminar servicio{bg:green})
