@@ -1,17 +1,18 @@
 <?php
 require_once 'modelo/EstadoContrato.php';
+require_once 'controladorUsuario.php';
 
 class ControladorEstadoContrato {
     private $modelo;
-    //private $controladorUsuario;
+    private $controladorUsuario;
 
     public function __construct() {
         $this->modelo = new EstadoContrato();
+        $this->controladorUsuario = new ControladorUsuario();
     }
 
     public function listarSolicitudesContrato() {
-        //$this->controladorUsuario->verificarAccesoAdministrador();
-        session_start();
+        $this->controladorUsuario->verificarAccesoUsuario();
         switch ($_SESSION['usuario']['IdRol'])
         {
             case 2:
@@ -28,9 +29,7 @@ class ControladorEstadoContrato {
     }
 
     public function actualizar($id, $idTipoEstadoContrato) {
-        //$this->controladorUsuario->verificarAccesoAdministrador();
-        session_start();
-    
+        $this->controladorUsuario->verificarAccesoUsuario();
         $this->modelo->actualizarEstadoContrato($id, $idTipoEstadoContrato);
         header('Location: index.php?action=listarSolicitudes');
     }

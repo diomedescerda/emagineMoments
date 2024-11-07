@@ -143,6 +143,14 @@ class ControladorUsuario {
         return $_SESSION['usuario']['IdUsuario'];
     }
 
+    public function verificarAccesoUsuario(){
+        session_start();
+        if (!isset($_SESSION['usuario'])) {
+            header('Location: ./');
+            exit;
+        }
+    }
+
     public function verificarAccesoAdministrador(){
         session_start();
         if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['IdRol'] !== 1) {

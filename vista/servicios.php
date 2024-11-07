@@ -21,7 +21,7 @@
                 <th>Tipo de Servicio</th>
                 <th>Costo</th>
                 <th>Descripción</th>
-                <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
+                <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['IdRol'] == 2): ?>
                 <th>Acciones</th>
                 <?php endif; ?>
             </tr>
@@ -37,7 +37,7 @@
                         <td><?= $servicio['TipoServicio'] ?></td>
                         <td><?= $servicio['Costo'] ?></td>
                         <td><?= $servicio['Descripcion'] ?></td>
-                        <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
+                        <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['IdRol'] == 2): ?>
                         <td>
                             <a href="index.php?action=contratarServicio&idServicio=<?= $servicio['IdServicio'] ?>">Contratar</a>
                         </td>
