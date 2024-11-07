@@ -15,7 +15,7 @@
 [Cliente]-(Consultar servicios{bg:green})
 [Cliente]-(Ver historial de contratos{bg:green})
 [Cliente]-(Ver solicitudes de contrato realizadas{bg:green})
-(Ver historial de contratos)<(Reseñar servicio{bg:red})
+(Ver historial de contratos)<(Reseñar servicio{bg:green})
 (Ver solicitudes de contrato realizadas)<(Cancelar servicio{bg:green})
 (Consultar servicios)<(Solicitar servicio{bg:green})
 [Proveedor]-(Listar servicios{bg:green})

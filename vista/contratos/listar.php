@@ -42,9 +42,7 @@
                         <td>working</td>
                         <td><?= $contrato['FechaYHora'] ?></td>
                         <td>
-                            <a href="index.php?action=editarContrato&id=<?= $contrato['IdContrato'] ?>">Editar</a>
-                            <a href="index.php?action=eliminarContrato&id=<?= $contrato['IdContrato'] ?>"
-                                onclick="return confirm('¿Estás seguro de eliminar este Contrato?')">Eliminar</a>
+                            <a href="index.php?action=crearReview&idServicio=<?= $contrato['IdServicio'] ?>&idContrato=<?= $contrato['IdContrato'] ?>">Reseñar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

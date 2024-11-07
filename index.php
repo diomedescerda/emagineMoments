@@ -3,11 +3,13 @@ require_once 'controlador/ControladorUsuario.php';
 require_once 'controlador/ControladorServicio.php';
 require_once 'controlador/ControladorContrato.php';
 require_once 'controlador/ControladorEstadoContrato.php';
+require_once 'controlador/ControladorReview.php';
 
 $controladorUsuario = new ControladorUsuario();
 $controladorServicio = new ControladorServicio();
 $controladorContrato = new ControladorContrato();
 $controladorEstadoContrato = new ControladorEstadoContrato();
+$controladorReview = new ControladorReview();
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
@@ -77,12 +79,20 @@ if (isset($_GET['action'])) {
             $controladorServicio->mostrarFormularioCrear();
             break;
 
+        case 'crearReview':
+            $controladorReview->mostrarVistaReview($_GET['idServicio'], $_GET['idContrato']);
+            break;
+
         case 'guardarUsuario':
             $controladorUsuario->crear();
             break;
         
         case 'guardarServicio':
             $controladorServicio->crear();
+            break;
+
+        case 'guardarReview':
+            $controladorReview->crear($_GET['idContrato']);
             break;
 
         case 'contratarServicio':

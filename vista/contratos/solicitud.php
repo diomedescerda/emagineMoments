@@ -32,7 +32,7 @@
         <tbody>
             <?php if (empty($contratos)): ?>
                 <tr>
-                    <td colspan="6">No hay contratos disponibles.</td>
+                    <td colspan="7">No hay contratos disponibles.</td>
                 </tr>
             <?php else: ?>
                 <?php foreach ($contratos as $contrato): ?>
