@@ -50,9 +50,16 @@
                         <td>working</td>
                         <td><?= $contrato['FechaYHora'] ?></td>
                         <td>
-                            <a href="index.php?action=firmarContrato&id=<?= $estadoContrato['IdEstadoContrato'] ?>&idTipoEstadoContrato=2">Firmar</a>
-                            <a href="index.php?action=rechazarContrato&id=<?= $estadoContrato['IdEstadoContrato'] ?>&idTipoEstadoContrato=4"
-                                onclick="return confirm('¿Estás seguro de eliminar este Contrato?')">Rechazar</a>
+                            <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
+                                <a href="index.php?action=rechazarContrato&id=<?= $estadoContrato['IdEstadoContrato'] ?>&idTipoEstadoContrato=5"
+                                    onclick="return confirm('¿Estás seguro de eliminar este Contrato?')">Cancelar</a>
+                            <?php endif; ?>
+                            <?php if ($_SESSION['usuario']['IdRol'] == 3): ?>
+                                <a
+                                    href="index.php?action=firmarContrato&id=<?= $estadoContrato['IdEstadoContrato'] ?>&idTipoEstadoContrato=3">Firmar</a>
+                                <a href="index.php?action=rechazarContrato&id=<?= $estadoContrato['IdEstadoContrato'] ?>&idTipoEstadoContrato=5"
+                                    onclick="return confirm('¿Estás seguro de eliminar este Contrato?')">Rechazar</a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

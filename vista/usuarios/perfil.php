@@ -27,10 +27,10 @@ if (isset($_SESSION['usuario'])): ?>
             <a href="index.php?action=listarServicios&id=<?= $_SESSION['usuario']['IdRol'] ?>" class="btn">
                 Listar Mis Servicios
             </a>
+            <?php endif; ?>
             <a href="index.php?action=listarSolicitudes" class="btn">
                 Solicitudes de Contrato
             </a>
-            <?php endif; ?>
             <a href="index.php?action=editarUsuario" class="btn">Modificar datos</a>
             <a href="#" class="btn" id="eliminarCuenta">Eliminar cuenta</a>
         </div>

@@ -12,7 +12,17 @@ class ControladorEstadoContrato {
     public function listarSolicitudesContrato() {
         //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
-        $contratos = $this->modelo->obtenerSolicitudesContrato($_SESSION['usuario']['IdUsuario']);
+        switch ($_SESSION['usuario']['IdRol'])
+        {
+            case 2:
+                $contratos = $this->modelo->obtenerSolicitudesContratoUsuario($_SESSION['usuario']['IdUsuario']);
+                break;
+            case 3:
+                $contratos = $this->modelo->obtenerSolicitudesContratoProveedor($_SESSION['usuario']['IdUsuario']);
+                break;
+            default;
+                break;
+        }
         $estadoContratos = $this->modelo->obtenerEstadosContrato();
         require 'vista/contratos/solicitud.php';
     }

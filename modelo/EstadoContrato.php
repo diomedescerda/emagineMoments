@@ -37,7 +37,7 @@ class EstadoContrato
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function obtenerSolicitudesContrato($id)
+    public function obtenerSolicitudesContratoProveedor($id)
     {
         $stmt = $this->conexion->prepare("
         SELECT c.* 
@@ -45,6 +45,19 @@ class EstadoContrato
         INNER JOIN Servicios s ON c.IdServicio = s.IdServicio 
         INNER JOIN EstadosContrato ec ON c.IdContrato = ec.IdContrato 
         WHERE s.IdPrestador = ? AND ec.IdTipoEstadoContrato = 1");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function obtenerSolicitudesContratoUsuario($id)
+    {
+        $stmt = $this->conexion->prepare("
+        SELECT c.* 
+        FROM Contratos c 
+        INNER JOIN Servicios s ON c.IdServicio = s.IdServicio 
+        INNER JOIN EstadosContrato ec ON c.IdContrato = ec.IdContrato 
+        WHERE c.IdCliente = ? AND ec.IdTipoEstadoContrato = 1");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
