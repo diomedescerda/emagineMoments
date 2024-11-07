@@ -53,7 +53,7 @@
                         <td><?= $contrato['Costo'] ?></td>
                         <td><?= $contrato['FechaYHora'] ?></td>
                         <td><?= $contrato['EstadoServicio'] ?></td>
-                        <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
+                        <?php if ($_SESSION['usuario']['IdRol'] == 2 && $contrato['IdTipoEstadoContrato'] == 4): ?>
                         <td>
                             <a
                                 href="index.php?action=crearReview&idServicio=<?= $contrato['IdServicio'] ?>&idContrato=<?= $contrato['IdContrato'] ?>">Reseñar</a>

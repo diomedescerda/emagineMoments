@@ -68,6 +68,7 @@ class Contrato
         SELECT 
             c.IdContrato,
             s.IdServicio,
+            ec.IdTipoEstadoContrato,
             u.PrimerNombre AS NombreCliente,
             p.PrimerNombre AS NombrePrestador,
             s.Descripcion AS Descripcion,

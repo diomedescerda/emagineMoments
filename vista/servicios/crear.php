@@ -1,7 +1,7 @@
 <h1>Crear Servicio</h1>
 <form method="POST" action="index.php?action=guardarServicio">
     <label for="IdTipoServicio">Tipo de Servicio:</label>
-    <select name="IdTipoPrestador" id="tipoPrestadorSelect" required>
+    <select name="IdTipoServicio" id="tipoServicioSelect" required>
         <?php foreach ($tipoServicios as $tipoServicio): ?>
             <option value="<?= $tipoServicio['IdTipoServicio'] ?>"><?= htmlspecialchars($tipoServicio['Nombre']) ?>
             </option>
