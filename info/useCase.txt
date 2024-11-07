@@ -13,10 +13,10 @@
 [Administrador]^[Cliente]
 [Administrador]^[Proveedor]
 [Cliente]-(Consultar servicios{bg:green})
-[Cliente]-(Ver historial de contratos{bg:yellow})
+[Cliente]-(Ver historial de contratos{bg:green})
 (Ver historial de contratos)<(Reseñar servicio{bg:red})
 (Contratar servicio)<(Cancelar servicio{bg:yellow})
-(Consultar servicios)<(Contratar servicio{bg:yellow})
+(Consultar servicios)<(Contratar servicio{bg:green})
 [Proveedor]-(Listar servicios{bg:green})
 [Proveedor]-(Consultar contratos{bg:green})
 (Listar servicios)<(Agregar servicio{bg:green})

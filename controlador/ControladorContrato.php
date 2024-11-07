@@ -10,10 +10,21 @@ class ControladorContrato {
         //$this->controladorUsuario = new ControladorUsuario();
     }
 
-    public function listarMisContratos() {
+    public function listarMisContratos($idRol) {
         //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
-        $contratos = $this->modelo->obtenerMisContratos($_SESSION['usuario']['IdUsuario']);
+        switch ($idRol) {
+            case 2:
+                $contratos = $this->modelo->obtenerContratosCliente($_SESSION['usuario']['IdUsuario']);
+                break;
+            
+            case 3:
+                $contratos = $this->modelo->obtenerContratosPrestador($_SESSION['usuario']['IdUsuario']);
+                break;
+
+            default:
+                break;
+        }
         require 'vista/contratos/listar.php';
     }
 
@@ -23,13 +34,11 @@ class ControladorContrato {
         require 'vista/contratos/crear.php';
     }
 
-    public function crear() {
+    public function crear($idServicio) {
         //$this->controladorUsuario->verificarAccesoAdministrador();
         session_start();
-        $idCliente = $_POST['IdCliente'];
-        $idServicio = $_POST['IdServicio'];
-        $costo = $_POST['Costo'];
-        $this->modelo->crearContrato($idCliente, $idServicio, $costo);
+        $idCliente = $_SESSION['usuario']['IdUsuario'];
+        $this->modelo->crearContrato($idCliente, $idServicio);
         header('Location: index.php?action=listarMisContratos');
     }
 
@@ -45,9 +54,8 @@ class ControladorContrato {
         session_start();
         $idCliente = $_POST['IdTipoServicio'];
         $idServicio = $_SESSION['usuario']['IdUsuario'];
-        $costo = $_POST['Costo'];
     
-        $this->modelo->actualizarContrato($id, $idCliente, $idServicio, $costo);
+        $this->modelo->actualizarContrato($id, $idCliente, $idServicio);
         header('Location: index.php?action=listarMisContratos');
     }
 

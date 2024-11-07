@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'listarContratos':
-            $controladorContrato->listarMisContratos();
+            $controladorContrato->listarMisContratos($_GET['idRol']);
             break;
         
         case 'crearUsuario':
@@ -77,6 +77,10 @@ if (isset($_GET['action'])) {
         
         case 'guardarServicio':
             $controladorServicio->crear();
+            break;
+
+        case 'contratarServicio':
+            $controladorContrato->crear($_GET['idServicio']);
             break;
         
         case 'editarUsuario':

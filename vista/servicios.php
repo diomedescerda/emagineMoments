@@ -23,6 +23,7 @@
                 <th>IdPrestador</th>
                 <th>Costo</th>
                 <th>Descripción</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +39,9 @@
                         <td><?= $servicio['IdPrestador'] ?></td>
                         <td><?= $servicio['Costo'] ?></td>
                         <td><?= $servicio['Descripcion'] ?></td>
+                        <td>
+                            <a href="index.php?action=contratarServicio&idServicio=<?= $servicio['IdServicio'] ?>">Contratar</a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>

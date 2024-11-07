@@ -39,7 +39,7 @@
                         <td><?= $contrato['IdContrato'] ?></td>
                         <td><?= $contrato['IdCliente'] ?></td>
                         <td><?= $contrato['IdServicio'] ?></td>
-                        <td><?= $contrato['Costo'] ?></td>
+                        <td>working</td>
                         <td><?= $contrato['FechaYHora'] ?></td>
                         <td>
                             <a href="index.php?action=editarContrato&id=<?= $contrato['IdContrato'] ?>">Editar</a>
