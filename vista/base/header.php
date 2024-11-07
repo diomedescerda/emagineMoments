@@ -21,11 +21,6 @@
             </li>
             <li>
                 <a href="">
-                    <a href="index.php?action=listarContratos&idRol=<?=$_SESSION['usuario']['IdRol']?>"><p>Contratos</p></a>
-                </a>
-            </li>
-            <li>
-                <a href="">
                     <p>Sobre Nosotros</p>
                 </a>
             </li>

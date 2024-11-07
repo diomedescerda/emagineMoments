@@ -15,7 +15,7 @@ class Contrato
 
     public function crearContrato($idCliente, $idServicio)
     {
-        $stmt = $this->conexion->prepare("INSERT INTO Contratos (IdCliente, IdServicio) VALUES (?, ?)");
+        $stmt = $this->conexion->prepare("INSERT INTO Contratos (IdCliente, IdServicio, IdEstadoContrato) VALUES (?, ?, 1)");
         $stmt->bind_param("ii", $idCliente, $idServicio);
 
         if($stmt->execute()){

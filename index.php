@@ -2,10 +2,12 @@
 require_once 'controlador/ControladorUsuario.php';
 require_once 'controlador/ControladorServicio.php';
 require_once 'controlador/ControladorContrato.php';
+require_once 'controlador/ControladorEstadoContrato.php';
 
 $controladorUsuario = new ControladorUsuario();
-$controladorServicio = new controladorServicio();
-$controladorContrato = new controladorContrato();
+$controladorServicio = new ControladorServicio();
+$controladorContrato = new ControladorContrato();
+$controladorEstadoContrato = new ControladorEstadoContrato();
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
@@ -63,6 +65,10 @@ if (isset($_GET['action'])) {
             $controladorContrato->listarMisContratos($_GET['idRol']);
             break;
         
+        case 'listarSolicitudes':
+            $controladorEstadoContrato->listarSolicitudesContrato();
+            break;
+
         case 'crearUsuario':
             $controladorUsuario->mostrarFormularioCrear();
             break;
@@ -98,6 +104,14 @@ if (isset($_GET['action'])) {
 
         case 'actualizarServicio':
             $controladorServicio->actualizar($_GET['id']);
+            break;
+
+        case 'firmarContrato':
+            $controladorEstadoContrato->actualizar($_GET['id'], $_GET['idTipoEstadoContrato']);
+            break;
+
+        case 'rechazarContrato':
+            $controladorEstadoContrato->actualizar($_GET['id'], $_GET['idTipoEstadoContrato']);
             break;
 
         case 'eliminarUsuario':
