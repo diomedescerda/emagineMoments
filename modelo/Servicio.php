@@ -33,13 +33,32 @@ class Servicio
     
     public function obtenerServicios()
     {
-        $resultado = $this->conexion->query("SELECT * FROM Servicios");
+        $resultado = $this->conexion->query("
+         SELECT 
+            ts.Nombre AS TipoServicio, 
+            s.Costo, 
+            s.Descripcion
+        FROM 
+            Servicios s
+        INNER JOIN 
+            TiposServicio ts ON s.IdTipoServicio = ts.IdTipoServicio");
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
 
     public function obtenerMisServicios($id)
     {
-        $stmt = $this->conexion->prepare("SELECT * FROM Servicios WHERE IdPrestador = ?");
+        $stmt = $this->conexion->prepare("
+         SELECT 
+            s.IdServicio,
+            ts.Nombre AS TipoServicio, 
+            s.Costo, 
+            s.Descripcion
+        FROM 
+            Servicios s
+        INNER JOIN 
+            TiposServicio ts ON s.IdTipoServicio = ts.IdTipoServicio
+        WHERE
+            s.IdPrestador = ?");
         $stmt->bind_param("i", $id);
     
         $stmt->execute();

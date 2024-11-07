@@ -34,10 +34,29 @@ class Contrato
     public function obtenerContratosPrestador($id)
     {
         $stmt = $this->conexion->prepare("
-            SELECT c.* 
-            FROM Contratos c 
-            INNER JOIN Servicios s ON c.IdServicio = s.IdServicio 
-            WHERE s.IdPrestador = ?");
+            SELECT 
+                c.IdContrato,
+                s.IdServicio,
+                u.PrimerNombre AS NombreCliente,
+                p.PrimerNombre AS NombrePrestador,
+                s.Descripcion AS Descripcion,
+                s.Costo AS Costo,
+                c.FechaYHora AS FechaYHora,
+                tec.Nombre AS EstadoServicio
+            FROM 
+                contratos c
+            INNER JOIN 
+                usuarios u ON c.IdCliente = u.IdUsuario
+            INNER JOIN 
+                servicios s ON c.IdServicio = s.IdServicio
+            INNER JOIN 
+                usuarios p ON s.IdPrestador = p.IdUsuario
+            INNER JOIN 
+                estadoscontrato ec ON c.IdContrato = ec.IdContrato
+            INNER JOIN 
+                tiposestadocontrato tec ON ec.IdTipoEstadoContrato = tec.IdTipoEstadoContrato
+            WHERE 
+                s.IdPrestador = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -46,8 +65,29 @@ class Contrato
     public function obtenerContratosCliente($id)
     {
         $stmt = $this->conexion->prepare("
-            SELECT * FROM Contratos 
-            WHERE IdCliente = ?");
+        SELECT 
+            c.IdContrato,
+            s.IdServicio,
+            u.PrimerNombre AS NombreCliente,
+            p.PrimerNombre AS NombrePrestador,
+            s.Descripcion AS Descripcion,
+            s.Costo AS Costo,
+            c.FechaYHora AS FechaYHora,
+            tec.Nombre AS EstadoServicio
+        FROM 
+            contratos c
+        INNER JOIN 
+            usuarios u ON c.IdCliente = u.IdUsuario
+        INNER JOIN 
+            servicios s ON c.IdServicio = s.IdServicio
+        INNER JOIN 
+            usuarios p ON s.IdPrestador = p.IdUsuario
+        INNER JOIN 
+            estadoscontrato ec ON c.IdContrato = ec.IdContrato
+        INNER JOIN 
+            tiposestadocontrato tec ON ec.IdTipoEstadoContrato = tec.IdTipoEstadoContrato
+        WHERE 
+            c.IdCliente = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

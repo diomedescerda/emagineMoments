@@ -20,12 +20,19 @@
     <table border="1">
         <thead>
             <tr>
-                <th>IdContrato</th>
-                <th>IdCliente</th>
-                <th>IdServicio</th>
+                <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
+                    <th>Nombre del Prestador</th>
+                <?php endif; ?>
+                <?php if ($_SESSION['usuario']['IdRol'] == 3): ?>
+                    <th>Nombre de Cliente</th>
+                <?php endif; ?>
+                <th>Descripción</th>
                 <th>Costo</th>
-                <th>Fecha y Hora</th>
+                <th>Fecha/Hora</th>
+                <th>Estado del Servicio</th>
+                <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
                 <th>Acciones</th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -36,14 +43,22 @@
             <?php else: ?>
                 <?php foreach ($contratos as $contrato): ?>
                     <tr>
-                        <td><?= $contrato['IdContrato'] ?></td>
-                        <td><?= $contrato['IdCliente'] ?></td>
-                        <td><?= $contrato['IdServicio'] ?></td>
-                        <td>working</td>
+                        <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
+                            <td><?= $contrato['NombrePrestador'] ?></td>
+                        <?php endif; ?>
+                        <?php if ($_SESSION['usuario']['IdRol'] == 3): ?>
+                            <td><?= $contrato['NombreCliente'] ?></td>
+                        <?php endif; ?>
+                        <td><?= $contrato['Descripcion'] ?></td>
+                        <td><?= $contrato['Costo'] ?></td>
                         <td><?= $contrato['FechaYHora'] ?></td>
+                        <td><?= $contrato['EstadoServicio'] ?></td>
+                        <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
                         <td>
-                            <a href="index.php?action=crearReview&idServicio=<?= $contrato['IdServicio'] ?>&idContrato=<?= $contrato['IdContrato'] ?>">Reseñar</a>
+                            <a
+                                href="index.php?action=crearReview&idServicio=<?= $contrato['IdServicio'] ?>&idContrato=<?= $contrato['IdContrato'] ?>">Reseñar</a>
                         </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>

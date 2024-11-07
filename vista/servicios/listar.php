@@ -20,9 +20,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th>IdServicio</th>
-                <th>IdTipoServicio</th>
-                <th>IdPrestador</th>
+                <th>Tipo de Servicio</th>
                 <th>Costo</th>
                 <th>Descripción</th>
                 <th>Acciones</th>
@@ -31,14 +29,12 @@
         <tbody>
             <?php if (empty($servicios)): ?>
                 <tr>
-                    <td colspan="6">No hay servicios disponibles.</td>
+                    <td colspan="4">No hay servicios disponibles.</td>
                 </tr>
             <?php else: ?>
                 <?php foreach ($servicios as $servicio): ?>
                     <tr>
-                        <td><?= $servicio['IdServicio'] ?></td>
-                        <td><?= $servicio['IdTipoServicio'] ?></td>
-                        <td><?= $servicio['IdPrestador'] ?></td>
+                        <td><?= $servicio['TipoServicio'] ?></td>
                         <td><?= $servicio['Costo'] ?></td>
                         <td><?= $servicio['Descripcion'] ?></td>
                         <td>

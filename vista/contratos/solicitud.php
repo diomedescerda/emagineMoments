@@ -20,12 +20,11 @@
     <table border="1">
         <thead>
             <tr>
-                <th>IdContrato</th>
-                <th>IdCliente</th>
-                <th>IdServicio</th>
-                <th>idTipoEstadoContrato</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Descripción del Servicio</th>
                 <th>Costo</th>
-                <th>Fecha y Hora</th>
+                <th>Fecha/Hora</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -43,11 +42,10 @@
                     $estadoContrato = reset($estadoContrato);
                     ?>
                     <tr>
-                        <td><?= $contrato['IdContrato'] ?></td>
-                        <td><?= $contrato['IdCliente'] ?></td>
-                        <td><?= $contrato['IdServicio'] ?></td>
-                        <td><?= $estadoContrato['IdTipoEstadoContrato'] ?></td>
-                        <td>working</td>
+                        <td><?= $contrato['Nombre'] ?></td>
+                        <td><?= $contrato['Apellido'] ?></td>
+                        <td><?= $contrato['Descripcion'] ?></td>
+                        <td><?= $contrato['Costo'] ?></td>
                         <td><?= $contrato['FechaYHora'] ?></td>
                         <td>
                             <?php if ($_SESSION['usuario']['IdRol'] == 2): ?>
