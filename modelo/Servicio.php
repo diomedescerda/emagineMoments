@@ -35,6 +35,7 @@ class Servicio
     {
         $resultado = $this->conexion->query("
          SELECT 
+            s.IdServicio,
             ts.Nombre AS TipoServicio, 
             s.Costo, 
             s.Descripcion
