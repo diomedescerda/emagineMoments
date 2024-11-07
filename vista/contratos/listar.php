@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lista Contratos</title>
+    <title>Historial de Contratos</title>
     <link href="./vista/styles/lista.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -13,7 +13,7 @@
 <body>
     <?php require_once('./vista/base/header.php'); ?>
     <div class="info">
-        <h1>Lista de Contratos</h1>
+        <h1>Historial de Contratos</h1>
         <a href="index.php?action=crearContrato" class="button">Crear Contrato</a>
     </div>
 

@@ -25,6 +25,7 @@
                 <th>IdPrestador</th>
                 <th>Costo</th>
                 <th>Descripción</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
