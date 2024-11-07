@@ -1,13 +1,16 @@
 <?php
 require_once 'Conexion.php';
+require_once 'EstadoContrato.php';
 
 class Contrato 
 {
     private $conexion;
+    private $estadoContrato;
 
     public function __construct()
     {
         $this->conexion = Conexion::getInstance()->getConexion();
+        $this->estadoContrato = new EstadoContrato();
     }
 
     public function crearContrato($idCliente, $idServicio)
@@ -15,7 +18,11 @@ class Contrato
         $stmt = $this->conexion->prepare("INSERT INTO Contratos (IdCliente, IdServicio) VALUES (?, ?)");
         $stmt->bind_param("ii", $idCliente, $idServicio);
 
-        return $stmt->execute();
+        if($stmt->execute()){
+            $this->estadoContrato->crearEstadoContrato($this->conexion->insert_id, 1);
+        } else {
+            throw new Exception("Error al crear el contrato: " . $stmt->error);
+        }
     }
 
     public function obtenerContratos()
