@@ -28,43 +28,40 @@ class ControladorUsuario
 
     public function iniciarSesion() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'];
-            $contrasena = $_POST['contrasena'];
+            $email = filter_input(INPUT_POST,'email'); 
+            $contrasena = filter_input(INPUT_POST,'contrasena'); 
             
             $usuario = $this->modelo->verificarCredenciales($email, $contrasena);
+            
+            header('Content-Type: application/json');
             
             if ($usuario) {
                 session_start();
                 $_SESSION['usuario'] = $usuario;
                 
-                if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
-                   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-                    
-                    header('Content-Type: application/json');
-                    echo json_encode([
-                        'success' => true,
-                        'usuario' => [
-                            'IdRol' => $usuario['IdRol'],
-                            'IdUsuario' => $usuario['IdUsuario']
-                        ],
-                        'message' => 'Login exitoso'
-                    ]);
-                    exit;
+                $ruta = 'index.php';
+                switch($usuario['IdRol']) {
+                    case 1:
+                        $ruta = 'index.php?action=listarUsuarios';
+                        break;
+                    case 3:
+                        $ruta = 'index.php?action=listarServicios&id=' . $usuario['IdUsuario'];
+                        break;
                 }
+                
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Inicio de sesión exitoso',
+                    'ruta' => $ruta
+                ]);
             } else {
-                if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
-                   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-                    header('Content-Type: application/json');
-                    echo json_encode([
-                        'success' => false,
-                        'message' => 'Credenciales inválidas'
-                    ]);
-                    exit;
-                } else {
-                    header('Location: index.php?action=iniciarSesion&error=1');
-                    exit;
-                }
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Credenciales inválidas',
+                    'ruta' => 'index.php?action=iniciarSesion'
+                ]);
             }
+            exit;
         }
     }
     
@@ -114,25 +111,43 @@ class ControladorUsuario
         require 'vista/usuarios/editar.php';
     }
 
-    public function actualizar($id)
+    public function actualizar($id = null)
     {
-        if ($id === NULL) {
-            $id = $this->setIdUsuario();
-        } else {
-            $this->verificarAccesoAdministrador();
+        try {
+            if ($id === null) {
+                $id = $this->setIdUsuario();
+            } else {
+                $this->verificarAccesoAdministrador();
+            }
+    
+            $primerNombre = filter_input(INPUT_POST, 'PrimerNombre');
+            $otrosNombres = filter_input(INPUT_POST, 'OtrosNombres');
+            $primerApellido = filter_input(INPUT_POST, 'PrimerApellido');
+            $otrosApellidos = filter_input(INPUT_POST, 'OtrosApellidos');
+            $email = filter_input(INPUT_POST, 'Email', FILTER_VALIDATE_EMAIL);
+            $direccion = filter_input(INPUT_POST, 'Direccion');
+            $telefono = filter_input(INPUT_POST, 'Telefono');
+            $idRol = filter_input(INPUT_POST, 'IdRol', FILTER_VALIDATE_INT);
+            $idTipoPrestador = filter_input(INPUT_POST, 'IdTipoPrestador', FILTER_VALIDATE_INT);
+    
+            $this->modelo->actualizarUsuario( $id, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $direccion, $telefono, $idRol, $idTipoPrestador);
+    
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => true,
+                'message' => 'Usuario actualizado exitosamente'
+            ]);
+            exit;
+    
+        } catch (Exception $e) {
+            header('Content-Type: application/json');
+            http_response_code(500);
+            echo json_encode([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+            exit;
         }
-        $PrimerNombre = $_POST['PrimerNombre'];
-        $OtrosNombres = $_POST['OtrosNombres'];
-        $PrimerApellido = $_POST['PrimerApellido'];
-        $OtrosApellidos = $_POST['OtrosApellidos'];
-        $Email = $_POST['Email'];
-        $Direccion = $_POST['Direccion'];
-        $Telefono = $_POST['Telefono'];
-        $IdRol = $_POST['IdRol'];
-        $IdTipoPrestador = $_POST['IdTipoPrestador'];
-
-        $this->modelo->actualizarUsuario($id, $PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $IdRol, $IdTipoPrestador);
-        header('Location: index.php?action=listarUsuarios');
     }
 
     public function eliminar($id, $IdRol)

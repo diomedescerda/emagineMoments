@@ -22,12 +22,12 @@
 
             <label for="password">Contraseña</label>
             <div class="password-container">
-                <input type="password" id="pass" name="contrasena" placeholder="********" required>
+                <input type="password" id="contrasena" name="contrasena" placeholder="********" required>
                 <button type="button" id="togglePassword">Mostrar</button>
             </div>
             <span id="passwordError" class="error-message"></span>
 
-            <button class="submit-button" type="submit">Entrar</button>
+            <button id="btnSubmit" class="submit-button" type="submit">Entrar</button>
 
             <div class="social-login">
                 <p>O ingresar con:</p>
