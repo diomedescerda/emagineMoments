@@ -3,71 +3,106 @@ require_once 'modelo/Usuario.php';
 require_once 'modelo/Rol.php';
 require_once 'modelo/TipoPrestador.php';
 
-class ControladorUsuario {
+class ControladorUsuario
+{
     private $modelo;
     private $rol;
     private $tipoPrestador;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->modelo = new Usuario();
         $this->rol = new Rol();
         $this->tipoPrestador = new TipoPrestador();
     }
 
-    public function mostrarLogin() {
+    public function mostrarLogin()
+    {
         require 'vista/login.php';
     }
 
-    public function mostrarLaberinto() {
+    public function mostrarLaberinto()
+    {
         require 'vista/laberinto.php';
     }
 
     public function iniciarSesion() {
-        $email = $_POST['email'];
-        $contrasena = $_POST['contrasena'];
-        $usuario = $this->modelo->verificarCredenciales($email, $contrasena);
-        
-        if ($usuario) {
-            session_start();
-            $_SESSION['usuario'] = $usuario;
-            if($usuario['IdRol'] == 1){header('Location: index.php?action=listarUsuarios');}
-            elseif($usuario['IdRol'] == 3){header('Location: index.php?action=listarServicios&id=' . $usuario['IdUsuario']);}
-            else {header('Location: index.php');}
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'];
+            $contrasena = $_POST['contrasena'];
+            
+            $usuario = $this->modelo->verificarCredenciales($email, $contrasena);
+            
+            if ($usuario) {
+                session_start();
+                $_SESSION['usuario'] = $usuario;
                 
-        } else {
-            header('Location: index.php?action=iniciarSesion&error=1');
+                if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                    
+                    header('Content-Type: application/json');
+                    echo json_encode([
+                        'success' => true,
+                        'usuario' => [
+                            'IdRol' => $usuario['IdRol'],
+                            'IdUsuario' => $usuario['IdUsuario']
+                        ],
+                        'message' => 'Login exitoso'
+                    ]);
+                    exit;
+                }
+            } else {
+                if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                    header('Content-Type: application/json');
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Credenciales inválidas'
+                    ]);
+                    exit;
+                } else {
+                    header('Location: index.php?action=iniciarSesion&error=1');
+                    exit;
+                }
+            }
         }
     }
-
-    public function cerrarSesion() {
+    
+    public function cerrarSesion()
+    {
         session_start();
-        session_destroy(); 
+        session_destroy();
         header('Location: index.php?action=iniciarSesion');
     }
 
-    public function mostrarRegistro() {
+    public function mostrarRegistro()
+    {
         $roles = $this->rol->obtenerRoles();
         $tipoPrestadores = $this->tipoPrestador->obtenerTipoPrestadores();
-        require 'vista/registro.php';  
+        require 'vista/registro.php';
     }
 
-    public function mostrarBienvenida(){
+    public function mostrarBienvenida()
+    {
         require 'vista/bienvenida.php';
     }
 
-    public function registrarUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono) {
+    public function registrarUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono)
+    {
         $this->modelo->crearUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono);
         header('Location: ./');
     }
 
-    public function listar() {
+    public function listar()
+    {
         $this->verificarAccesoAdministrador();
         $usuarios = $this->modelo->obtenerUsuarios();
         require 'vista/usuarios/listar.php';
     }
 
-    public function mostrarFormularioEditar($id) {
-        if ($id === NULL){
+    public function mostrarFormularioEditar($id)
+    {
+        if ($id === NULL) {
             $id = $this->setIdUsuario();
             $usuario = $this->modelo->obtenerUsuarioPorId($id);
         } else {
@@ -79,8 +114,9 @@ class ControladorUsuario {
         require 'vista/usuarios/editar.php';
     }
 
-    public function actualizar($id) {
-        if ($id === NULL){
+    public function actualizar($id)
+    {
+        if ($id === NULL) {
             $id = $this->setIdUsuario();
         } else {
             $this->verificarAccesoAdministrador();
@@ -94,30 +130,34 @@ class ControladorUsuario {
         $Telefono = $_POST['Telefono'];
         $IdRol = $_POST['IdRol'];
         $IdTipoPrestador = $_POST['IdTipoPrestador'];
-    
+
         $this->modelo->actualizarUsuario($id, $PrimerNombre, $OtrosNombres, $PrimerApellido, $OtrosApellidos, $Email, $Direccion, $Telefono, $IdRol, $IdTipoPrestador);
         header('Location: index.php?action=listarUsuarios');
     }
 
-    public function eliminar($id, $IdRol) {
-        if($id === NULL){
+    public function eliminar($id, $IdRol)
+    {
+        if ($id === NULL) {
             $id = $this->setIdUsuario();
         } else {
             $this->verificarAccesoAdministrador();
         }
         $this->modelo->eliminarUsuario($id, $IdRol);
         header('Location: index.php?action=listarUsuarios');
-        if($id === $_SESSION['usuario']['IdUsuario']) session_destroy();
+        if ($id === $_SESSION['usuario']['IdUsuario'])
+            session_destroy();
     }
 
-    public function mostrarFormularioCrear() {
+    public function mostrarFormularioCrear()
+    {
         $this->verificarAccesoAdministrador();
         $roles = $this->rol->obtenerRoles();
         $tipoPrestadores = $this->tipoPrestador->obtenerTipoPrestadores();
         require 'vista/usuarios/crear.php';
     }
 
-    public function crear() {
+    public function crear()
+    {
         $this->verificarAccesoAdministrador();
         $idRol = $_POST['IdRol'];
         $primerNombre = $_POST['PrimerNombre'];
@@ -129,21 +169,24 @@ class ControladorUsuario {
         $direccion = $_POST['Direccion'];
         $telefono = $_POST['Telefono'];
         $idTipoPrestador = $_POST['IdTipoPrestador'];
-    
+
         $this->modelo->crearUsuario($idRol, $primerNombre, $otrosNombres, $primerApellido, $otrosApellidos, $email, $contrasena, $direccion, $telefono, $idTipoPrestador);
         header('Location: index.php?action=listarUsuarios');
     }
 
-    public function verPerfil() {
+    public function verPerfil()
+    {
         require 'vista/usuarios/perfil.php';
     }
 
-    private function setIdUsuario(){
+    private function setIdUsuario()
+    {
         session_start();
         return $_SESSION['usuario']['IdUsuario'];
     }
 
-    public function verificarAccesoUsuario(){
+    public function verificarAccesoUsuario()
+    {
         session_start();
         if (!isset($_SESSION['usuario'])) {
             header('Location: ./');
@@ -151,7 +194,8 @@ class ControladorUsuario {
         }
     }
 
-    public function verificarAccesoAdministrador(){
+    public function verificarAccesoAdministrador()
+    {
         session_start();
         if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['IdRol'] !== 1) {
             header('Location: ./');
