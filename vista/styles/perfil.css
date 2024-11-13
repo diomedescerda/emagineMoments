@@ -1,8 +1,8 @@
 /* General */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #121013;
+    color: #FFFFFF;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    background-color: #fff;
+    background-color: #1A1A1A;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -43,13 +43,13 @@ a.btn {
     padding: 10px 20px;
     margin-top: 10px;
     border-radius: 5px;
-    background-color: #4a90e2;
-    color: white;
+    background-color: #E310CB;
+    color: #FFFFFF;
     transition: background-color 0.3s ease;
 }
 
 a.btn:hover {
-    background-color: #357abd;
+    background-color: #FF33FF;
 }
 
 /* Enlace para cerrar sesión */
