@@ -15,15 +15,20 @@ class Contrato
 
     public function crearContrato($idCliente, $idServicio)
     {
-        $stmt = $this->conexion->prepare("INSERT INTO Contratos (IdCliente, IdServicio, IdEstadoContrato) VALUES (?, ?, 1)");
+        $stmt = $this->conexion->prepare("INSERT INTO Contratos (IdCliente, IdServicio) VALUES (?, ?)");
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $this->conexion->error);
+        }
+        
         $stmt->bind_param("ii", $idCliente, $idServicio);
-
-        if($stmt->execute()){
+        
+        if ($stmt->execute()) {
             $this->estadoContrato->crearEstadoContrato($this->conexion->insert_id, 1);
         } else {
             throw new Exception("Error al crear el contrato: " . $stmt->error);
         }
     }
+
 
     public function obtenerContratos()
     {
