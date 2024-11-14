@@ -1,36 +1,40 @@
 @import url("./base.css");
 
-/* Style for the table */
 table {
     width: 80%;
     border-collapse: collapse;
     margin: 20px auto;
     font-family: var(--mono);
     font-size: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-/* Header styling */
 table thead {
     background-color: var(--magenta);
     color: var(--white);
+    text-transform: uppercase;
 }
 
 table th, table td {
     padding: 12px;
-    border: 1px solid var(--white);
+    border: 2px solid var(--white);
     text-align: left;
+    transition: all 0.3s ease;
 }
 
 table tbody tr:hover {
     background-color: var(--plum);
-}
-
-table tbody tr:nth-child(even):hover {
-    background-color: var(--plum);
+    cursor: pointer;
 }
 
 table tbody tr:nth-child(even) {
     background-color: var(--dkblue);
+}
+
+table tbody tr:nth-child(even):hover {
+    background-color: var(--plum);
 }
 
 table td a {
@@ -38,6 +42,7 @@ table td a {
     text-decoration: none;
     font-weight: bold;
     margin-right: 10px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 table td a:hover {

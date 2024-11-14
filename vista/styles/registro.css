@@ -1,110 +1,69 @@
 @import url("./base.css");
+@import url("./editar.css");
 
-* {
-    box-sizing: border-box;
-    font-family: var(--sans);
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background-color: var(--black);
-    color: var(--black);
-    font-size: var(--font-size);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* Container */
-.register-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    background-color: var(--white);
-    padding: 2rem;
-    margin: 4rem;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-    width: 100%;
+.logo-container {
     text-align: center;
+    margin-bottom: 2rem;
 }
 
-/* Logo */
 .logo {
-    max-width: 20rem;
-    margin-bottom: 1rem;
+    max-width: 200px;
+    height: auto;
 }
 
-/* Heading */
-h2 {
-    color: var(--black);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+#additionalSelects {
+    margin-top: 0rem;
 }
-
-/* Form Styling */
-form {
-    display: contents;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.form-group label {
-    text-align: left;
-    font-weight: bold;
-    margin-bottom: 0.2rem;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--plum);
-    color: var(--white);
-    font-size: 1rem;
-}
-
-input::placeholder {
-    color: var(--white);
-    opacity: 0.7;
-}
-
-/* Password container */
 .password-container {
+    position: relative;
     display: flex;
-    align-items: center;
     gap: 0.5rem;
 }
 
-/* Additional Select Styles */
-#additionalSelects {
-    margin-top: 1rem;
+.password-container input {
+    flex: 1;
 }
 
-/* Login Text */
+.password-container button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.password-container button:hover {
+    background-color: var(--magenta);
+}
+
 .login-text {
-    margin-top: 1rem;
-    font-size: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--white);
 }
 
 .login-text a {
-    color: var(--magenta);
+    color: var(--aqua);
     text-decoration: none;
+    transition: color 0.3s;
 }
 
 .login-text a:hover {
-    color: var(--hotmag);
-    text-decoration: underline;
+    color: var(--magenta);
+}
+
+.btnSubmit {
+    padding: 1.25rem 1.3rem;
+    background-color: var(--magenta);
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btnSubmit:hover {
+    background-color: var(--hotmag);
 }
