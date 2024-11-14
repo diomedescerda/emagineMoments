@@ -28,7 +28,7 @@ session_start();
             <h3>Artistas más relevantes</h3>
             <div class="card-list">
                 <a href="#" class="card-item">
-                    <img src="./vista/img/example1.jpg" alt="Card Image">
+                    <img src="./vista/img/music.jpg" alt="Card Image">
                     <span class="banda">Banda</span>
                     <h3>The Beatles</h3>
                     <div class="arrow">
@@ -36,7 +36,7 @@ session_start();
                     </div>
                 </a>
                 <a href="#" class="card-item">
-                    <img src="./vista/img/example1.jpg" alt="Card Image">
+                    <img src="./vista/img/music.jpg" alt="Card Image">
                     <span class="solista">Solista</span>
                     <h3>The Beatles</h3>
                     <div class="arrow">
@@ -44,7 +44,7 @@ session_start();
                     </div>
                 </a>
                 <a href="#" class="card-item">
-                    <img src="./vista/img/example1.jpg" alt="Card Image">
+                    <img src="./vista/img/music.jpg" alt="Card Image">
                     <span class="instrumentista">Instrumentista</span>
                     <h3>The Beatles</h3>
                     <div class="arrow">
@@ -52,7 +52,7 @@ session_start();
                     </div>
                 </a>
                 <a href="#" class="card-item">
-                    <img src="./vista/img/example1.jpg" alt="Card Image">
+                    <img src="./vista/img/music.jpg" alt="Card Image">
                     <span class="solista">Solista</span>
                     <h3>The Beatles</h3>
                     <div class="arrow">

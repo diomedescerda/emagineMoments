@@ -14,7 +14,6 @@
     <?php require_once('./vista/base/header.php'); ?>
     <div class="info">
         <h1>Historial de Contratos</h1>
-        <a href="index.php?action=crearContrato" class="button">Crear Contrato</a>
     </div>
 
     <table border="1">

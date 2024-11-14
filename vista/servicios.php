@@ -39,6 +39,7 @@ session_start();
         <?php endif; ?>
     </div>
     <?php require_once('./vista/base/footer.php'); ?>
+    <script src="./vista/js/servicios.js"></script>
 </body>
 
 </html>
