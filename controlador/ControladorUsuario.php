@@ -44,6 +44,9 @@ class ControladorUsuario
                     case 1:
                         $ruta = 'index.php?action=listarUsuarios';
                         break;
+                    case 2:
+                        $ruta = 'index.php?action=perfil';
+                        break;
                     case 3:
                         $ruta = 'index.php?action=listarServicios&id=' . $usuario['IdUsuario'];
                         break;
