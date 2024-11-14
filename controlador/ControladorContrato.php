@@ -34,10 +34,11 @@ class ControladorContrato
     public function crear($idServicio)
     {
         $this->controladorUsuario->verificarAccesoUsuario();
-        if ($_SESSION['usuario']['IdRol'] == 2) {
+        $idRol = $_SESSION['usuario']['IdRol']; 
+        if ($idRol == 2) {
             $idCliente = $_SESSION['usuario']['IdUsuario'];
             $this->modelo->crearContrato($idCliente, $idServicio);
-            header('Location: index.php?action=listarMisContratos');
+            header('Location: index.php?action=listarContratos&idRol='. $idRol);
         }
     }
 
